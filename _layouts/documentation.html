@@ -41,64 +41,62 @@
         {% include header.html %}
 
         <div class="wrapper">
-            <div class="content">
-                <div class="row documentation no-border">
-                    <nav class="documentation__nav">
-                        {% include docs-navigation.html %}
+            <div class="row documentation no-border">
+                <nav class="documentation__nav">
+                    {% include docs-navigation.html %}
 
-                        <script>
-                            function expandCollapse(clickEvent) {
-                                var item = clickEvent.target;
-                                var link = item.querySelector('[href]');
-                                var linkWidth = link.offsetWidth;
-                                var clickOffset = clickEvent.offsetX;
+                    <script>
+                        function expandCollapse(clickEvent) {
+                            var item = clickEvent.target;
+                            var link = item.querySelector('[href]');
+                            var linkWidth = link.offsetWidth;
+                            var clickOffset = clickEvent.offsetX;
 
-                                if (clickOffset > linkWidth) {
-                                    collapsed = ! item.classList.toggle('expanded');
-                                    item.classList.toggle('collapsed', collapsed);
-                                }
+                            if (clickOffset > linkWidth) {
+                                collapsed = ! item.classList.toggle('expanded');
+                                item.classList.toggle('collapsed', collapsed);
+                            }
+                        }
+
+                        var items = document.querySelectorAll('.documentation__nav ul li');
+
+                        for(var num = 0; num < items.length; num++) {
+                            var item = items[num];
+
+                            // only act on items with child lists
+                            if (! item.querySelector('ul')) {
+                                continue;
                             }
 
-                            var items = document.querySelectorAll('.documentation__nav ul li');
+                            var link = item.querySelector('[href]');
 
-                            for(var num = 0; num < items.length; num++) {
-                                var item = items[num];
+                            linkPath = link.pathname;
+                            currentPath = location.pathname;
 
-                                // only act on items with child lists
-                                if (! item.querySelector('ul')) {
-                                    continue;
-                                }
-
-                                var link = item.querySelector('[href]');
-
-                                linkPath = link.pathname;
-                                currentPath = location.pathname;
-
-                                if (linkPath.substring(0, 1) != '/') {
-                                  linkPath = '/' + linkPath;
-                                }
-
-                                if (currentPath.startsWith(linkPath)) {
-                                    item.classList.add('expanded');
-                                } else {
-                                    item.classList.add('collapsed');
-                                }
-
-                                item.addEventListener('click', expandCollapse);
+                            if (linkPath.substring(0, 1) != '/') {
+                              linkPath = '/' + linkPath;
                             }
-                        </script>
-                    </nav>
-                    <main class="documentation__content">
-                        <h1 id="introduction">{{ page.title }}</h1>
-                        {{ content }}
-                    </main>
-                    <aside class="jujudocs__toc">
-                    </aside>
-                </div>
+
+                            if (currentPath.startsWith(linkPath)) {
+                                item.classList.add('expanded');
+                            } else {
+                                item.classList.add('collapsed');
+                            }
+
+                            item.addEventListener('click', expandCollapse);
+                        }
+                    </script>
+                </nav>
+                <main class="documentation__content">
+                    <h1 id="introduction">{{ page.title }}</h1>
+                    {{ content }}
+                </main>
+                <aside class="jujudocs__toc">
+                </aside>
             </div>
         </div>
 
-        <footer class="global clearfix no-global wrapper">
+        <footer class="global clearfix no-global">
             <nav id="main-navigation" role="navigation" class="clearfix">
                 <div class="legal clearfix has-cookie">
                     <p class="twelve-col">© 2016 Canonical Ltd. Ubuntu and Canonical are registered trademarks of Canonical Ltd.</p>
