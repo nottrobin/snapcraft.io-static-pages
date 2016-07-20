@@ -1,18 +1,25 @@
 <header class="banner global" role="banner">
-  <nav role="navigation" class="nav-primary nav-right" id="nav">
-    <span id="main-navigation-link"><a href="#main-navigation">
-        Jump to site nav</a></span>
-    <div class="logo">
-      <a href="/">
-        <img src="https://assets.ubuntu.com/v1/5b34329f-snapcraft_logotype_hex.svg" alt="Snapcraft">
-      </a>
-    </div>
-    <ul class="not-for-small">
-      <li><a href="/create">Create a snap</a></li>
-    </ul>
-  </nav>
-  <div class="nav-toggle">
-    <a href="#nav" class="nav-toggle__link open"></a>
-    <a href="#" class="nav-toggle__link close"></a>
-  </div>
+    <nav role="navigation" class="nav-primary" id="nav-primary">
+        <span class="accessibility-aid">
+            <a href="#main-content">Jump to main content</a>
+        </span>
+        <div class="logo">
+            <a href="/">
+                <img src="https://assets.ubuntu.com/v1/d45097a4-snapcraft.io-logotype.svg" alt="Snapcraft.io">
+            </a>
+        </div>
+        <div id="nav">
+            <div class="nav-toggle">
+                <a href="#nav" class="nav-toggle__link open"></a>
+                <a href="#" class="nav-toggle__link close"></a>
+            </div>
+            {% assign current = page.url | downcase | split: '/' %}
+            <ul>
+                <li {% if current[1] == 'community' %}class='active'{% endif %}><a href="/community">Community</a></li>
+                <li {% if current[1] == 'create' %}class='active'{% endif %}><a href="/create">Create</a></li>
+                <li {% if current[1] == 'docs' %}class='active'{% endif %}><a href="/docs">Docs</a></li>
+                <li><a class="external" href="https://developer.ubuntu.com/en/snappy/support/faq/">FAQ</a></li>
+            </ul>
+        </div>
+    </nav>
 </header>

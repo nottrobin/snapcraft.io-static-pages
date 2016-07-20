@@ -1,22 +1,103 @@
-// remove mo
-.banner {
-  background: $white;
-  
-  #nav:hover ul,
-  .nav-toggle {
-    display: none;
-    
-    @media only screen and (min-width: 768px) {
-      display: block;
-    }
-  }
-  
-  .logo {
-    margin-left: 10px;
-    
-    @media only screen and (min-width: 984px) {
-      margin-left: 0;
-    }
+.banner .nav-primary ul li:last-child,
+.banner .nav-primary ul li a,
+.banner .nav-primary ul li a:link,
+.banner .nav-primary ul li a:visited {
+  border: 0;
+}
+
+.banner .logo {
+  margin: 0;
+
+  img {
+    height: 33px;
   }
 }
 
+.banner .nav-primary ul {
+  float: right;
+}
+
+.banner {
+  background: $white;
+  max-width: $site-max-width;
+
+  .nav-toggle {
+    background-image: url("https://assets.ubuntu.com/v1/1fd83579-navigation-menu-black.svg");
+  }
+
+  .logo {
+
+    padding-top: .25rem;
+
+    @media only screen and (max-width: 1060px) {
+      padding-left: 1rem;
+    }
+  }
+
+  .nav-primary {
+
+    @media only screen and (min-width: calc($site-max-width + 2rem)) {
+      padding: 0;
+    }
+
+    .docs & {
+      max-width: 100%;
+      padding: 0 1rem;
+    }
+
+    ul {
+      float: right;
+
+      li {
+
+        @media only screen and (min-width: 620px) {
+
+          border-bottom: 3px solid #fff;
+
+          &.active {
+            border-bottom: 3px solid #e95420;
+          }
+
+          &:hover {
+            background-color: #e3e3e3!important;
+            border-bottom: 3px solid #e3e3e3;
+          }
+
+          a {
+            background: none!important;
+          }
+        }
+      }
+
+      li:last-child {
+        border-right: 1px solid #e3e3e3;
+        border-left: 1px solid #e3e3e3;
+
+        a {
+          padding-right: 1rem;
+          margin-right: .5rem;
+          display: inline-block;
+        }
+
+        .docs & {
+          border-right: 0;
+          padding-right: 0;
+        }
+      }
+
+      li a.external:link:hover {
+        background-image:url('https://assets.ubuntu.com/v1/7d47725b-external-link.svg');
+        background-position: 95% 1rem;
+        background-size: .7em .7em;
+        background-repeat: no-repeat;
+      }
+    }
+  }
+
+  ul li .external {
+    color: $cool-grey;
+    background-image:url('https://assets.ubuntu.com/v1/7d47725b-external-link.svg')!important;
+    background-position: 95% 1rem;
+    padding-right: 3rem;
+  }
+}

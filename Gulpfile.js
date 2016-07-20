@@ -21,6 +21,15 @@ gulp.task('jekyll-build', function (done) {
 });
 
 /**
+ * Serve the Jekyll Site
+ */
+gulp.task('jekyll-serve', function (done) {
+    browserSync.notify(messages.jekyllBuild);
+    return cp.spawn('jekyll', ['serve'], {stdio: 'inherit'})
+        .on('close', done);
+});
+
+/**
  * Rebuild Jekyll & do page reload
  */
 gulp.task('jekyll-rebuild', ['jekyll-build'], function () {
@@ -42,7 +51,7 @@ gulp.task('browser-sync', ['sass', 'js', 'jekyll-build'], function() {
  * Compile files from _scss into both _site/css (for live injecting) and site (for future jekyll builds)
  */
 gulp.task('sass', function () {
-    return gulp.src('_sass/main.scss')
+    return gulp.src(['_sass/main.scss', '_sass/docs.scss'])
         .pipe(sourcemaps.init())
         .pipe(sass({
             includePaths: ['scss'],
@@ -67,20 +76,24 @@ gulp.task('sass', function () {
  });
 
 /**
- * Watch scss files for changes & recompile
- * Watch html/md files, run jekyll & reload BrowserSync
+ * Recompile scss on changes
  */
-gulp.task('watch', function () {
-    gulp.watch('_sass/*.scss', ['sass']);
-    gulp.watch('_js/*.js', ['js']);
-    gulp.watch(['*.html', '_layouts/*.html', '_posts/*'], ['jekyll-rebuild']);
-});
+ gulp.task('watch-scss', function()  {
+    gulp.watch('_sass/**/*.scss', ['sass']);
+ });
+
+ /**
+  * Recompile js on changes
+  */
+ gulp.task('watch-js', function() {
+    gulp.watch('_js/**/*.js', ['js']);
+ })
 
 /**
  * Default task, running just `gulp` will compile the sass,
  * compile the jekyll site, launch BrowserSync & watch files.
  */
-gulp.task('default', ['browser-sync', 'watch']);
+gulp.task('default', ['jekyll-serve', 'watch-scss', 'watch-js']);
 
 /**
  * Deploy to gh-pages branch to push to Github Pages instance
