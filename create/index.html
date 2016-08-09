@@ -24,12 +24,12 @@ layout: default
 
             <p>To take this tour of snaps and Snapcraft, you'll need to have Snapcraft 2.11 or later installed. If you've already installed Snapcraft you can check the version:</p>
 
-            <pre class="command-line"><code>$ snapcraft --version
+            <pre class="command-line code-block"><code>$ snapcraft --version
 2.11</code></pre>
 
             <p>If you haven't installed Snapcraft, it's available on Ubuntu 16.04 LTS:</p>
 
-            <pre class="command-line"><code>$ sudo apt install snapcraft</code></pre>
+            <pre class="command-line code-block"><code>$ sudo apt install snapcraft</code></pre>
 
             <p>It will also install and run on any Linux distribution with an up-to-date version of <a class="external" href="http://www.ubuntu.com/cloud/lxd">LXD, the container hypervisor</a>.</p>
 
@@ -39,7 +39,7 @@ layout: default
 
             <p>The tour includes all the example source code and files in a series of subdirectories, which you load using the Snapcraft tool:</p>
 
-            <pre class="command-line"><code>$ snapcraft tour
+            <pre class="command-line code-block"><code>$ snapcraft tour
 Snapcraft tour initialized in ./snapcraft-tour/
 Instructions are in the README, or http://snapcraft.io/create/#tour</code></pre>
 
@@ -47,7 +47,7 @@ Instructions are in the README, or http://snapcraft.io/create/#tour</code></pre>
 
             <p>Unless you specify a different directory name, the tour will be created in a new <code>snapcraft-tour</code> subdirectory in your current working directory. The directory structure will look like:</p>
 
-            <pre class="command-line"><code>$ ls snapcraft-tour/**
+            <pre class="command-line code-block"><code>$ ls snapcraft-tour/**
 snapcraft-tour/README.md
 
 snapcraft-tour/00-SNAPCRAFT:
@@ -67,13 +67,13 @@ snapcraft-tour/20-PARTS-PLUGINS:
 
             <p>Snapcraft uses a single text file to describe the entire build process for a snap: the snapcraft.yaml file. Over the course of this tour you'll learn how to create this file for your own snaps. You can see an example in this directory:</p>
 
-            <pre class="command-line"><code>$ cd snapcraft-tour/00-SNAPCRAFT/01-easy-start
+            <pre class="command-line code-block"><code>$ cd snapcraft-tour/00-SNAPCRAFT/01-easy-start
 $ ls
 snapcraft.yaml</code></pre>
 
             <p>Notice that <code>snapcraft.yaml</code> is the only file in the directory. Snapcraft doesn't need anything else as it will fetch everything it needs to build the snap, using the <code>snapcraft.yaml</code> description for the snap. Take a look inside:</p>
 
-            <pre class="command-line"><code>$ more snapcraft.yaml
+            <pre class="command-line code-block"><code>$ more snapcraft.yaml
 name: hello
 version: "2.10"
 summary: GNU Hello, the "hello world" snap
@@ -94,7 +94,7 @@ parts:
 
             <p>Start by building this snap, noting that you’ll be prompted for your system password each time you run <code>snapcraft</code>:</p>
 
-            <pre class="command-line"><code>$ snapcraft
+            <pre class="command-line code-block"><code>$ snapcraft
 [sudo] password for [your user name]:  ***
 Preparing to pull gnu-hello
 Pulling gnu-hello
@@ -105,7 +105,7 @@ Snapped hello_2.10_amd64.snap</code></pre>
 
             <p>You'll have seen that Snapcraft fetched the source code, configured and built it. The snap is now available in your directory, along with new parts, prime, and snap directories.</p>
 
-            <pre class="command-line"><code>$ ls
+            <pre class="command-line code-block"><code>$ ls
 hello_2.10_amd64.snap  parts  snap  snapcraft.yaml  prime</code></pre>
 
             <p>As you can see a snap is a single file. The name of the file is based on information in the <code>snapcraft.yaml</code> (its name and version) and the architecture you're building on: <code>&lt;name&gt;_&lt;version&gt;_&lt;arch&gt;.snap</code>. </p>
@@ -114,7 +114,7 @@ hello_2.10_amd64.snap  parts  snap  snapcraft.yaml  prime</code></pre>
 
             <p>Now, everything you need for the hello app is inside the snap file. You can install it locally:</p>
 
-            <pre class="command-line"><code>$ sudo snap install hello_2.10_*.snap
+            <pre class="command-line code-block"><code>$ sudo snap install hello_2.10_*.snap
 hello 2.10 installed
 
 
@@ -133,19 +133,19 @@ hello  2.10     X1</code></pre>
 
             <p>You can also confirm details of all the snaps you've installed:</p>
 
-            <pre class="command-line"><code>$ snap list
+            <pre class="command-line code-block"><code>$ snap list
 Name         Version               Rev  Developer  Notes
 hello        2.10                  X1              -
 ubuntu-core  16.04+20160531.11-56  122  canonical  -</code></pre>
 
             <p>Finally, run your snap:</p>
 
-            <pre class="command-line"><code>$ hello
+            <pre class="command-line code-block"><code>$ hello
 Hello, world!</code></pre>
 
             <p>Next, you might want to do some housekeeping and get rid of all the files that were created in the process of building the snap:</p>
 
-            <pre class="command-line"><code>$ snapcraft clean
+            <pre class="command-line code-block"><code>$ snapcraft clean
 Cleaning snapping area for gnu-hello
 Cleaning staging area for gnu-hello
 Cleaning build for gnu-hello
@@ -160,7 +160,7 @@ hello_2.10_amd64.snap  snapcraft.yaml</code></pre>
 
             <p>One last thing to be aware of is that the <code>snapcraft</code> command is shorthand for the real command, which is <code>snapcraft snap</code>. You can see this from the help for snapcraft:</p>
 
-            <pre class="command-line"><code>$ snapcraft help
+            <pre class="command-line code-block"><code>$ snapcraft help
 Usage:
   snapcraft [options] [--enable-geoip --no-parallel-build]
   snapcraft [options] init
@@ -202,7 +202,7 @@ Usage:
 
             <p>In the <code>snapcraft.yaml</code> of the hello app you'll have noticed a section called parts:</p>
 
-            <pre class="command-line"><code>  gnu-hello:
+            <pre class="command-line code-block"><code>  gnu-hello:
     plugin: autotools
     source: http://ftp.gnu.org/gnu/hello/hello-2.10.tar.gz</code></pre>
 
@@ -210,7 +210,7 @@ Usage:
 
             <p>Many parts will specify an explicit file version for the source, as this one does. This ensures that everybody who builds this part gets exactly the same code, because it's fetched from the same file. However, you could point to a source that will change every time there is a new release:</p>
 
-            <pre class="command-line"><code>parts:
+            <pre class="command-line code-block"><code>parts:
   foo-stable:
     plugin: autotools
     source: http://releases.foo.org/download/foo-stable.tar.gz</code></pre>
@@ -219,14 +219,14 @@ Usage:
 
             <p>You can refer to local source as well. For example, you can make a part that refers to a subdirectory where the part source code is kept:</p>
 
-            <pre class="command-line"><code>parts:
+            <pre class="command-line code-block"><code>parts:
   foo-forked:
     plugin: autotools
     source: ./src/foo</code></pre>
 
             <p>You can ask Snapcraft itself for a full specification of all the ways to refer to source:</p>
 
-            <pre class="command-line"><code>$ snapcraft help sources
+            <pre class="command-line code-block"><code>$ snapcraft help sources
 Common 'source' options.
 
 Unless the part plugin overrides this behaviour, a part can use these
@@ -273,7 +273,7 @@ cases you want to refer to the help text for the specific plugin.
 
             <p>Snapcraft can tell you which plugins it has installed:</p>
 
-            <pre class="command-line"><code>$ snapcraft list-plugins
+            <pre class="command-line code-block"><code>$ snapcraft list-plugins
 ant        copy    kernel  nodejs   tar-content
 autotools  go      make    python2
 catkin     jdk     maven   python3
@@ -283,7 +283,7 @@ cmake      kbuild  nil     scons</code></pre>
 
             <p>The next example is a more interesting snap that uses two parts:</p>
 
-            <pre class="command-line"><code>$ cd ../02-parts
+            <pre class="command-line code-block"><code>$ cd ../02-parts
 $ more snapcraft.yaml
 name: hello-debug
 version: "2.10"
@@ -308,7 +308,7 @@ parts:
 
             <p>Now build and install it:</p>
 
-            <pre class="command-line"><code>$ snapcraft
+            <pre class="command-line code-block"><code>$ snapcraft
 ...
 $ sudo snap install hello-debug_2.10_*.snap
 ...</code></pre>
@@ -343,7 +343,7 @@ $ sudo snap install hello-debug_2.10_*.snap
 
             <p><code>snapcraft clean</code> removes the directories and data created by Snapcraft. By default it will delete all the directories and data created by Snapcraft from your snap's directory. However, you can use <code>snapcraft clean &lt;part&gt;</code> to delete a specific part:</p>
 
-            <pre class="command-line"><code>$ snapcraft clean gnu-bash
+            <pre class="command-line code-block"><code>$ snapcraft clean gnu-bash
 Cleaning priming area for gnu-bash
 Cleaning staging area for gnu-bash
 Cleaning build for gnu-bash
@@ -351,14 +351,14 @@ Cleaning pulled source for gnu-bash</code></pre>
 
             <p>As you can see <code>snapcraft clean</code> has now deleted all your directories from the <code>gnu-bash</code> part.</p>
 
-            <pre class="command-line"><code>$ ls parts
+            <pre class="command-line code-block"><code>$ ls parts
 gnu-hello</code></pre>
 
             <h4 id="pull">pull: Pulling dependencies to refresh code</h4>
 
             <p>When the source code in an online or local repository changes you can use <code>snapcraft pull</code> to pull the updated source code from that repository, remembering to do a <code>snapcraft clean</code> first. You can pull the code for all your dependencies or only the parts you know have changed by using <code>snapcraft pull &lt;part&gt;</code>.</p>
 
-            <pre class="command-line"><code>$ snapcraft pull
+            <pre class="command-line code-block"><code>$ snapcraft pull
 Skipping pull gnu-hello (already ran)
 Preparing to pull gnu-bash
 Pulling gnu-bash </code></pre>
@@ -367,7 +367,7 @@ Pulling gnu-bash </code></pre>
 
             <p>As you can see <code>snapcraft pull</code> has created some new directories and populated <code>src/</code>:</p>
 
-            <pre class="command-line"><code>$ ls parts/gnu-bash/**
+            <pre class="command-line code-block"><code>$ ls parts/gnu-bash/**
 parts/gnu-bash/bin:
 pkg-config
 
@@ -386,7 +386,7 @@ parts/gnu-bash/ubuntu:</code></pre>
 
             <p>You can use <code>snapcraft build</code> to build any parts that haven't been built and install them in their part directory, or specify specific parts to be built:</p>
 
-            <pre class="command-line"><code>$ snapcraft build
+            <pre class="command-line code-block"><code>$ snapcraft build
 Skipping pull gnu-bash (already ran)
 Skipping pull gnu-hello (already ran)
 Preparing to build gnu-bash
@@ -397,7 +397,7 @@ Skipping build gnu-hello (already ran)</code></pre>
 
             <p>As you can see <code>snapcraft build</code> has now populated both the <code>build/</code> and <code>install/</code> directories:</p>
 
-            <pre class="command-line"><code>$ ls parts/gnu-bash/build/
+            <pre class="command-line code-block"><code>$ ls parts/gnu-bash/build/
 [...] lots of files
 
 $ ls parts/gnu-bash/install/
@@ -407,7 +407,7 @@ $ ls parts/gnu-bash/install/
 
             <p>Having built all the parts for your snap, use <code>snapcraft stage</code> to move all the relevant content into stage/ (to prepare for creating the snap package):</p>
 
-            <pre class="command-line"><code>$ snapcraft stage
+            <pre class="command-line code-block"><code>$ snapcraft stage
 Skipping pull gnu-bash (already ran)
 Skipping pull gnu-hello (already ran)
 Skipping build gnu-bash (already ran)
@@ -429,7 +429,7 @@ bash</code></pre>
 
             <p>Once you're satisfied with the snap created in the <code>stage/</code> directory, create the final snap in its correct location using <code>snapcraft prime</code>:</p>
 
-            <pre class="command-line"><code>$ snapcraft prime
+            <pre class="command-line code-block"><code>$ snapcraft prime
 Skipping pull gnu-hello (already ran)
 Skipping pull gnu-bash (already ran)
 Skipping build gnu-hello (already ran)
@@ -441,7 +441,7 @@ Priming gnu-bash </code></pre>
 
             <p>As you can see <code>snapcraft prime</code> has copied the content of <code>stage/</code> to <code>prime/</code> and added some wrapper and metadata scripts:</p>
 
-            <pre class="command-line"><code>$ ls prime/
+            <pre class="command-line code-block"><code>$ ls prime/
 bin  command-bash.wrapper  command-hello.wrapper  meta  share  var
 </code></pre>
 
@@ -453,7 +453,7 @@ bin  command-bash.wrapper  command-hello.wrapper  meta  share  var
 
             <p>The default action in the Snapcraft lifecycle is to compress the <code>prime/</code> directory into a single <code>.snap</code> squashfs file.</p>
 
-            <pre class="command-line"><code>$ snapcraft snap prime/
+            <pre class="command-line code-block"><code>$ snapcraft snap prime/
 Snapping 'hello-debug' -
 Snapped hello-debug_2.10_amd64.snap</code></pre>
 
@@ -476,7 +476,7 @@ Snapped hello-debug_2.10_amd64.snap</code></pre>
 
             <p>The example snap in the first part of this guide delivered a simple terminal application. However, you can deliver any type of application or service with a snap that you might do with a standard deb package. This example shows how you do this for a service:</p>
 
-            <pre class="command-line"><code>$ cd ../../10-SNAPS/01-service
+            <pre class="command-line code-block"><code>$ cd ../../10-SNAPS/01-service
 $ snapcraft
 $ sudo snap install hello-world-service_0.1_*.snap --devmode
 Name                 Version  Rev  Developer  Notes
@@ -486,14 +486,14 @@ hello-world-service  0.1      x1              devmode</code></pre>
 
             <p>The key components of <code>snapcraft.yaml</code> that enabled this are:</p>
 
-            <pre class="command-line"><code>parts:
+            <pre class="command-line code-block"><code>parts:
   hello:
     plugin: nodejs
     source: .</code></pre>
 
             <p>Here the hello part uses the nodejs plugin, a plugin to handle Node.js projects. It takes all the npm information from <code>package.json</code>, including dependencies (if any) and installs them alongside the service's JavaScript code.</p>
 
-            <pre class="command-line"><code>apps:
+            <pre class="command-line code-block"><code>apps:
   hello-service:
     command: hello-world
     daemon: simple</code></pre>
@@ -504,7 +504,7 @@ hello-world-service  0.1      x1              devmode</code></pre>
 
             <p>You may have noticed the <code>--devmode</code> option was used in snap install. Reinstall the snap without it:</p>
 
-            <pre class="command-line"><code>$ sudo snap install hello-world-service_0.1_*.snap
+            <pre class="command-line code-block"><code>$ sudo snap install hello-world-service_0.1_*.snap
 Name                 Version  Rev  Developer  Notes
 hello-world-service  0.1      x2              -</code></pre>
 
@@ -516,7 +516,7 @@ hello-world-service  0.1      x2              -</code></pre>
 
             <p>To simplify development, <code>--devmode</code> enables you to run the snap outside the confinement sandbox and get unrestricted access to system resources, in this case, listening to the network. However, you do need to tell the snap that it can run in devmode, by making a declaration in <code>snapcraft.yaml</code>:</p>
 
-            <pre class="command-line"><code>$ more snapcraft.yaml
+            <pre class="command-line code-block"><code>$ more snapcraft.yaml
 [...]
 confinement: devmode</code></pre>
 
@@ -530,13 +530,13 @@ confinement: devmode</code></pre>
 
             <p>The <code>hello-world-service</code> snap needs to have access to the network, so it can listen for and serve requests, this access is requested using the [<code>network-bind</code>] plug. This plug is then declared in the <code>snapcraft.yaml</code>:</p>
 
-            <pre class="command-line"><code>plugs: [network-bind]</code></pre>
+            <pre class="command-line code-block"><code>plugs: [network-bind]</code></pre>
 
             <p>Specifying the <code>network-bind</code> plug essentially pokes a hole in the otherwise-complete confinement, telling snappy that this snap requires access to the network through the <code>network-bind</code> interface. The plug then connects to the network-bind slot provided by the base OS as an helper.</p>
 
             <p>So now, without using <code>--devmode</code>,  you can run the confined version of the hello world service:</p>
 
-            <pre class="command-line"><code>$ cd ../02-service-confined
+            <pre class="command-line code-block"><code>$ cd ../02-service-confined
 $ snapcraft
 $ sudo snap install hello-world-service_0.1_*.snap
 Name                 Version  Rev  Developer  Notes
@@ -546,7 +546,7 @@ hello-world-service  0.1      x3              -</code></pre>
 
             <p>Finally, there has been one further very important change made to the <code>snapcraft.yaml</code>:</p>
 
-            <pre class="command-line"><code>confinement: strict</code></pre>
+            <pre class="command-line code-block"><code>confinement: strict</code></pre>
 
             <p>To indicate that this snap is now confined.</p>
 
@@ -554,7 +554,7 @@ hello-world-service  0.1      x3              -</code></pre>
 
             <p>Now you've got to grips with some basic and advanced snap features, it's worth gaining an understanding of what's inside a snap. And seeing the snap's content is easy, as it's all in the <code>prime/</code> directory:</p>
 
-            <pre class="command-line"><code>$ ls prime/**
+            <pre class="command-line code-block"><code>$ ls prime/**
 prime/CHANGELOG.md  prime/command-hello-service.wrapper  prime/LICENSE  prime/README.md
 
 prime/bin:
@@ -584,7 +584,7 @@ doc  man  systemtap</code></pre>
 
             <p>The <code>snap.yaml</code> file provides the configuration file for the snap's content and is similar to the <code>snapcraft.yaml</code> file, with two exceptions:</p>
 
-            <pre class="command-line"><code>$ more snap/meta/snap.yaml
+            <pre class="command-line code-block"><code>$ more snap/meta/snap.yaml
 apps:
   hello-service:
     command: command-hello-service.wrapper
@@ -635,14 +635,14 @@ version: 0.1</code></pre>
 
             <p>Parts from local source that use local files on your machine. For example (as seen in <code>10-SNAPS/01-service/</code>):</p>
 
-            <pre class="command-line"><code>parts:
+            <pre class="command-line code-block"><code>parts:
   hello:
     plugin: nodejs
     source: .</code></pre>
 
             <p>Parts from online sources, such as <code>github</code>, <code>bzr</code>, <code>tarball</code>, or any code repository you like. For example:</p>
 
-            <pre class="command-line"><code>parts:
+            <pre class="command-line code-block"><code>parts:
   godd:
    plugin: go
     source: https://github.com/mvo5/godd.git
@@ -656,19 +656,19 @@ version: 0.1</code></pre>
 
             <p>The features of parts shared by this last method are the focus of our next example:</p>
 
-            <pre class="command-line"><code>$ cd ../../20-PARTS-PLUGINS/01-reusable-part
+            <pre class="command-line code-block"><code>$ cd ../../20-PARTS-PLUGINS/01-reusable-part
 $ snapcraft
 $ sudo snap install hello-world-desktop_0.1_*.snap</code></pre>
 
             <p>Which can be run with the <code>hello-world-desktop</code> command as defined in the <code>snapcraft.yaml</code>:
 apps:</p>
 
-            <pre class="command-line"><code>hello-world-desktop:
+            <pre class="command-line code-block"><code>hello-world-desktop:
   command: qt5-launch hello-world-desktop</code></pre>
 
             <p>But notice this involves an extra tool <code>qt5-launch</code>, which prepares the environment for launching the real application. These <code>qt5-launch</code> and <code>hello-world-desktop</code> commands come from:</p>
 
-            <pre class="command-line"><code>parts:
+            <pre class="command-line code-block"><code>parts:
   hello-world:
     plugin: cmake
     source: src/
@@ -703,7 +703,7 @@ apps:</p>
 
             <p>Get more info from:</p>
 
-            <pre class="command-line"><code>$ snapcraft help autotools
+            <pre class="command-line code-block"><code>$ snapcraft help autotools
 $ snapcraft help make</code></pre>
 
             <h4 id="golang">golang: The Golang plugin</h4>
@@ -712,7 +712,7 @@ $ snapcraft help make</code></pre>
 
             <p>Get more info from:</p>
 
-            <pre class="command-line"><code>$ snapcraft help go
+            <pre class="command-line code-block"><code>$ snapcraft help go
 x-plugins: Local plugins</code></pre>
 
             <p>You can build your own plugin and reference it from your part. To do this, copy your plugin into <code>parts/plugins/x-&lt;plugin_name&gt;.py</code>.  Get inspiration from <a class="external" href="https://github.com/ubuntu-core/snapcraft/blob/master/snapcraft/plugins/go.py">https://github.com/ubuntu-core/snapcraft/blob/master/snapcraft/plugins/go.py</a></p>
@@ -725,7 +725,7 @@ x-plugins: Local plugins</code></pre>
 
             <p>Once you've confirmed your account, you're ready to start pushing your snaps to the Store. Make sure Snapcraft and snap know about you by logging in using the email address you provided at signup:</p>
 
-            <pre class="command-line"><code>$ snapcraft login
+            <pre class="command-line code-block"><code>$ snapcraft login
 $ snap login you@yourdomain.com</code></pre>
 
             <h4 id="devspace">devspace: You can generally publish your own version of a snap</h4>
@@ -744,7 +744,7 @@ $ snap login you@yourdomain.com</code></pre>
 
             <p>Once you've registered your snap name, go back to your <code>snapcraft.yaml</code> file and update the name field. Run Snapcraft again to quickly rebuild with the new name. With that done, the new revision of your snap can be uploaded to the Store:</p>
 
-            <pre class="command-line"><code>$ snapcraft upload hello-world_1.0_*.snap</code></pre>
+            <pre class="command-line code-block"><code>$ snapcraft upload hello-world_1.0_*.snap</code></pre>
 
             <h4 id="publication">publication: Users only see your published revisions</h4>
 
@@ -771,7 +771,7 @@ $ snap login you@yourdomain.com</code></pre>
 
             <p>You can confirm this by installing the snap locally, replacing '<code>hello-mark</code>' with your snap name:</p>
 
-            <pre class="command-line"><code>$ snap install hello-mark
+            <pre class="command-line code-block"><code>$ snap install hello-mark
 Name        Version  Rev     Developer
 hello-mark  1.0      1       sabdfl</code></pre>
 
@@ -783,7 +783,7 @@ hello-mark  1.0      1       sabdfl</code></pre>
 
             <p>When first making a snap it is often useful to specify confinement: devmode in your YAML like so:</p>
 
-            <pre class="command-line"><code>name: hello-world-service
+            <pre class="command-line code-block"><code>name: hello-world-service
 confinement: devmode
 apps:
   hello-service:
@@ -795,7 +795,7 @@ apps:
 
             <p>You then would specify <code>--devmode</code> when installing the snap for testing and development (you must always specify <code>--devmode</code> when installing in devmode regardless of how confinement is set in your yaml). Once the application is working well in devmode, install it without specifying <code>--devmode</code> and iterate until it is working properly under confinement. When satisfied, you may indicate it works under confinement with:</p>
 
-            <pre class="command-line"><code>name: hello-world-service
+            <pre class="command-line code-block"><code>name: hello-world-service
 confinement: strict
 apps:
   hello-service:
@@ -807,7 +807,7 @@ apps:
 
             <p>When debugging your snap when it is installed in strict mode (without <code>--devmode</code>), you can look in <code>/var/log/syslog</code> for sandbox denials. Alternatively, you may use the '<code>snappy-debug</code>' snap to assist you:</p>
 
-            <pre class="command-line"><code>$ sudo snap install snappy-debug
+            <pre class="command-line code-block"><code>$ sudo snap install snappy-debug
 $ sudo snap connect snappy-debug:log-observe ubuntu-core:log-observe
 $ sudo /snap/bin/snappy-debug.security scanlog hello-world-service</code></pre>
 
