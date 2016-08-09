@@ -229,43 +229,29 @@ Usage:
             <pre class="command-line code-block"><code>$ snapcraft help sources
 Common 'source' options.
 
-Unless the part plugin overrides this behaviour, a part can use these
-'source' keys in its definition. They tell snapcraft where to pull source
-code for that part, and how to unpack it if necessary.
+Unless the part plugin overrides this behaviour, a part can use these 'source' keys in its definition. They tell snapcraft where to pull source code for that part, and how to unpack it if necessary.
 
  - source: url-or-path
 
-    A URL or path to some source tree to build. It can be local
-    ('./src/foo') or remote ('https://foo.org/...'), and can refer to a
-    directory tree or a tarball or a revision control repository
-    ('git:...').
+    A URL or path to some source tree to build. It can be local ('./src/foo') or remote ('https://foo.org/...'), and can refer to a directory tree or a tarball or a revision control repository ('git:...').
 
   - source-type: git, bzr, hg, tar or zip
 
-    In some cases the source string is not enough to identify the version
-    control system or compression algorithm. The source-type key can tell
-    snapcraft exactly how to treat that content.
+    In some cases the source string is not enough to identify the version control system or compression algorithm. The source-type key can tell snapcraft exactly how to treat that content.
 
   - source-branch: &lt;branch-name&gt;
 
-    Snapcraft will checkout a specific branch from the source tree. This
-    only works on multi-branch repositories from git and hg (mercurial).
+    Snapcraft will checkout a specific branch from the source tree. This only works on multi-branch repositories from git and hg (mercurial).
 
   - source-tag: &lt;tag&gt;
 
-    Snapcraft will checkout the specific tag from the source tree revision
-    control system.
+    Snapcraft will checkout the specific tag from the source tree revision control system.
 
   - source-subdir: path
 
-    Snapcraft will checkout the repository or unpack the archive referred to
-    by the 'source' keyword into parts/&lt;part-name&gt;/src/ but it will only
-    copy the specified subdirectory into parts/&lt;part-name&gt;/build/
+    Snapcraft will checkout the repository or unpack the archive referred to by the 'source' keyword into parts/&lt;part-name&gt;/src/ but it will only copy the specified subdirectory into parts/&lt;part-name&gt;/build/
 
-Note that plugins might well define their own semantics for the 'source'
-keywords, because they handle specific build systems, and many languages
-have their own built-in packaging systems (think CPAN, PyPI, NPM). In those
-cases you want to refer to the help text for the specific plugin.
+Note that plugins might well define their own semantics for the 'source' keywords, because they handle specific build systems, and many languages have their own built-in packaging systems (think CPAN, PyPI, NPM). In those cases you want to refer to the help text for the specific plugin.
 
   snapcraft help &lt;plugin&gt;</code></pre>
 
@@ -482,7 +468,7 @@ $ sudo snap install hello-world-service_0.1_*.snap --devmode
 Name                 Version  Rev  Developer  Notes
 hello-world-service  0.1      x1              devmode</code></pre>
 
-            <p><code>--devmode</code> will be explained in the next chapter, so for now open http://localhost:8000 in your browser and you'll find the running web service.</p>
+            <p><code>--devmode</code> will be explained in the next chapter, so for now open <a href="http://localhost:8000">http://localhost:8000</a> in your browser and you'll find the running web service.</p>
 
             <p>The key components of <code>snapcraft.yaml</code> that enabled this are:</p>
 
@@ -508,7 +494,7 @@ hello-world-service  0.1      x1              devmode</code></pre>
 Name                 Version  Rev  Developer  Notes
 hello-world-service  0.1      x2              -</code></pre>
 
-            <p>If you now open <a class="external" href="http://localhost:8000">http://localhost:8000</a> you get a 404 page with no content and it would seem that the service can't serve web requests now.</p>
+            <p>If you now open <a href="http://localhost:8000">http://localhost:8000</a> you get a 404 page with no content and it would seem that the service can't serve web requests now.</p>
 
             <p>All snaps run confined by default. They're able to access any functions in the snap and data written to their own private writable area, but have restricted and secured access to the system.</p>
 
@@ -554,8 +540,8 @@ hello-world-service  0.1      x3              -</code></pre>
 
             <p>Now you've got to grips with some basic and advanced snap features, it's worth gaining an understanding of what's inside a snap. And seeing the snap's content is easy, as it's all in the <code>prime/</code> directory:</p>
 
-            <pre class="command-line code-block"><code>$ ls prime/**
-prime/CHANGELOG.md  prime/command-hello-service.wrapper  prime/LICENSE  prime/README.md
+            <pre class="command-line"><code>$ ls prime/**
+prime/CHANGELOG.md  <b>prime/command-hello-service.wrapper</b>  prime/LICENSE  prime/README.md
 
 prime/bin:
 hello-world  node  npm
