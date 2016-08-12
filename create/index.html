@@ -325,7 +325,7 @@ $ sudo snap install hello-debug_2.10_*.snap
 
             <p>Snapcraft also lets you work with individual commands so you can update and customize your snap. This section looks at some of those options and shows how you could clean and rebuild the gnu-bash part. </p>
 
-            <h4 id="clean">clean: Resetting individual parts or the whole snap</h4>
+            <h4 id="clean">clean: resetting individual parts or the whole snap</h4>
 
             <p><code>snapcraft clean</code> removes the directories and data created by Snapcraft. By default it will delete all the directories and data created by Snapcraft from your snap's directory. However, you can use <code>snapcraft clean &lt;part&gt;</code> to delete a specific part:</p>
 
@@ -340,7 +340,7 @@ Cleaning pulled source for gnu-bash</code></pre>
             <pre class="command-line code-block"><code>$ ls parts
 gnu-hello</code></pre>
 
-            <h4 id="pull">pull: Pulling dependencies to refresh code</h4>
+            <h4 id="pull">pull: pulling dependencies to refresh code</h4>
 
             <p>When the source code in an online or local repository changes you can use <code>snapcraft pull</code> to pull the updated source code from that repository, remembering to do a <code>snapcraft clean</code> first. You can pull the code for all your dependencies or only the parts you know have changed by using <code>snapcraft pull &lt;part&gt;</code>.</p>
 
@@ -368,7 +368,7 @@ pull
 
 parts/gnu-bash/ubuntu:</code></pre>
 
-            <h4 id="build">build: Build a specific part, or all of them</h4>
+            <h4 id="build">build: build a specific part, or all of them</h4>
 
             <p>You can use <code>snapcraft build</code> to build any parts that haven't been built and install them in their part directory, or specify specific parts to be built:</p>
 
@@ -389,7 +389,7 @@ Skipping build gnu-hello (already ran)</code></pre>
 $ ls parts/gnu-bash/install/
 [...] lots of files</code></pre>
 
-            <h4 id="stage">stage: Move the files installed from different parts into a single directory</h4>
+            <h4 id="stage">stage: move the files installed from different parts into a single directory</h4>
 
             <p>Having built all the parts for your snap, use <code>snapcraft stage</code> to move all the relevant content into stage/ (to prepare for creating the snap package):</p>
 
@@ -411,7 +411,7 @@ doc  info  locale  man
 stage/var:
 bash</code></pre>
 
-            <h4 id="prime">prime: Move the files needed for the snap into place</h4>
+            <h4 id="prime">prime: move the files needed for the snap into place</h4>
 
             <p>Once you're satisfied with the snap created in the <code>stage/</code> directory, create the final snap in its correct location using <code>snapcraft prime</code>:</p>
 
@@ -458,7 +458,7 @@ Snapped hello-debug_2.10_amd64.snap</code></pre>
 
             <p>Now you'll build on the knowledge you've gained about snaps, by looking at the other types of snap app types and some of the key technology that underpins snaps.</p>
 
-            <h4 id="apps">apps: defining services and commands</h4>
+            <h4 id="service-01">01-service: defining services and commands</h4>
 
             <p>The example snap in the first part of this guide delivered a simple terminal application. However, you can deliver any type of application or service with a snap that you might do with a standard deb package. This example shows how you do this for a service:</p>
 
@@ -486,7 +486,7 @@ hello-world-service  0.1      x1              devmode</code></pre>
 
             <p>Here the <code>hello-service</code> app is declared and specified as a simple (i.e. non-forking) daemon (a service that starts at boot and keeps running on your system). This daemon executes the <code>hello-world</code> command.</p>
 
-            <h4 id="confinement-and-devmode">confinement and devmode</h4>
+            <h4 id="services-confined-02">02-service-confined: confinement and devmode</h4>
 
             <p>You may have noticed the <code>--devmode</code> option was used in snap install. Reinstall the snap without it:</p>
 
@@ -615,7 +615,7 @@ version: 0.1</code></pre>
 
             <p>You first met parts at the start of this guide and have been working with them in all the examples so far. So, it's time to take a closer look at how parts work and the options they provide you. Then there are a couple of references for plugins, in case you would like to explore further.</p>
 
-            <h4 id="parts-intro: A "part" is a reusable component of a snap">parts-intro: A "part" is a reusable component of a snap</h4>
+            <h4 id="parts-intro">parts-intro: a "part" is a reusable component of a snap</h4>
 
             <p>Parts are reusable components that can be used when building a snap. They're analogous to a library that you would call in your program. There are three types of parts:</p>
 
@@ -673,17 +673,17 @@ apps:</p>
                 <li><code>after:</code> [<code>qt5conf</code>] lists the parts that must be staged before this part can be built. However, you may have noticed that this YAML doesn't actually contain the <code>qt5conf</code> part. That's because it's a part in the cloud, which is a way for collaborating, reusing, and sharing already-written parts. The previously mentioned <code>qt5-launch</code> tool comes from the <code>qt5conf</code> part, without any additional effort from you. This way you can make use of and build upon what others have created</li>
             </ul>
 
-            <h4 id="sharing">sharing: Sharing your parts with other developers</h4>
+            <h4 id="sharing">sharing: sharing your parts with other developers</h4>
 
             <p>If you would like to publish your own parts, you can contribute them on the wiki at <a class="external" href="https://wiki.ubuntu.com/snapcraft/parts">https://wiki.ubuntu.com/snapcraft/parts</a>.</p>
 
             <p>Your contributions will always be welcome!</p>
 
-            <h4 id="plugins">plugins: Each part is built using a snapcraft plugin</h4>
+            <h4 id="plugins">plugins: each part is built using a snapcraft plugin</h4>
 
             <p>Plugins tell Snapcraft how to build the content of the snap's parts. You'll probably use the supplied plugins for most of your snaps. However, you can add your own plugins for other languages. Details of how to do this are beyond this get started, but if you would like to explore more here are a couple of plugin examples and basic building details: </p>
 
-            <h4 id="autoconf-make">autoconf-make: The standard "configure, make, make install" plugin</h4>
+            <h4 id="autoconf-make">autoconf-make: the standard "configure, make, make install" plugin</h4>
 
             <p><a class="external" href="https://github.com/ubuntu-core/snapcraft/blob/master/demos/libpipeline/snapcraft.yaml">See an example on Github</a></p>
 
@@ -692,7 +692,7 @@ apps:</p>
             <pre class="command-line code-block"><code>$ snapcraft help autotools
 $ snapcraft help make</code></pre>
 
-            <h4 id="golang">golang: The Golang plugin</h4>
+            <h4 id="golang">golang: the Golang plugin</h4>
 
             <p><a class="external" href="https://github.com/ubuntu-core/snapcraft/blob/master/demos/godd/snapcraft.yaml">See an example on Github</a></p>
 
@@ -714,7 +714,7 @@ x-plugins: Local plugins</code></pre>
             <pre class="command-line code-block"><code>$ snapcraft login
 $ snap login you@yourdomain.com</code></pre>
 
-            <h4 id="devspace">devspace: You can generally publish your own version of a snap</h4>
+            <h4 id="devspace">devspace: you can generally publish your own version of a snap</h4>
 
             <p>You can publish your own version of a snap, provided you do so under a name you have rights to. New names can be registered by clicking the New Snap button on the developer portal, or by visiting: <a class="external" href="https://myapps.developer.ubuntu.com/dev/click-apps/register-name/">https://myapps.developer.ubuntu.com/dev/click-apps/register-name/</a></p>
 
@@ -726,13 +726,13 @@ $ snap login you@yourdomain.com</code></pre>
 
             <p>We can, if needed, rename snaps to ensure they match the expectations of most users. If you are the publisher most users expect for a name then claim it at: <a class="external" href="https://myapps.developer.ubuntu.com/dev/click-apps/register-name-dispute/">https://myapps.developer.ubuntu.com/dev/click-apps/register-name-dispute/</a></p>
 
-            <h4 id="revisions">revisions: You get a new revision every time you push</h4>
+            <h4 id="revisions">revisions: you get a new revision every time you push</h4>
 
             <p>Once you've registered your snap name, go back to your <code>snapcraft.yaml</code> file and update the name field. Run Snapcraft again to quickly rebuild with the new name. With that done, the new revision of your snap can be uploaded to the Store:</p>
 
             <pre class="command-line code-block"><code>$ snapcraft upload hello-world_1.0_*.snap</code></pre>
 
-            <h4 id="publication">publication: Users only see your published revisions</h4>
+            <h4 id="publication">publication: users only see your published revisions</h4>
 
             <p>Uploading your snap won't make it immediately available for installation. You'll have to choose the channel(s) you wish to release into.</p>
 
