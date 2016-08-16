@@ -22,6 +22,7 @@ $ubuntu_orange:    #dd4814;
 
 .documentation__content pre {
   @extend .code-block;
+  @extend .command-line;
 
   code {
     color: inherit;
