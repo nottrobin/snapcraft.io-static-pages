@@ -17,3 +17,14 @@ $ubuntu_orange:    #dd4814;
 @import "header";
 @import "documentation";
 @import "footer";
+
+@import "command-line";
+
+.documentation__content pre {
+  @extend .code-block;
+  @extend .command-line;
+
+  code {
+    color: inherit;
+  }
+}
