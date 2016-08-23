@@ -3,14 +3,18 @@ layout: default
 ---
 
     <section class="row hero-row no-border">
-        <div class="wrapper">
-            <div class="eight-col prepend-two">
+        <div class="wrapper equal-height">
+            <div class="five-col equal-height__item equal-height__align-vertically">
                 <h1 class="accessibility-aid">Snapcraft</h1>
                 <p class="intro">Package any app for every Linux desktop,
                 server, cloud or device, and deliver updates directly.</p>
                 <p><a href="/create">Learn to craft snaps</a>
                 or <a href="/community">join the community</a></p>
-
+                <div class="clearfix">
+                    <p>Read the <a href="/docs/core/install">installation instructions</a> or <a href="http://www.github.com/snapcore/snapd">build <code>snapd</code> from source</a></p>
+                </div>
+            </div>
+            <div class="seven-col equal-height__item last-col">
                 <ul class="inline-logos">
                     <li class="inline-logos__item">
                         <img class="inline-logos__image" src="{{ site.asset_path }}c086ad34-logo-ubuntu_st_no-black_orange-hex.svg" alt="ubuntu" />
@@ -18,7 +22,7 @@ layout: default
                     <li class="inline-logos__item">
                         <img class="inline-logos__image" src="{{ site.asset_path }}e0b23092-archlinux.svg" alt="archlinux" />
                     </li>
-                    <li class="inline-logos__item last-col">
+                    <li class="inline-logos__item">
                         <img class="inline-logos__image" src="{{ site.asset_path }}2eafb62e-openlogo.svg" alt="debian" />
                     </li>
                     <li class="inline-logos__item">
@@ -27,7 +31,7 @@ layout: default
                     <li class="inline-logos__item">
                         <img class="inline-logos__image" src="{{ site.asset_path }}1a53bedd-fedora.svg" alt="fedora" />
                     </li>
-                    <li class="inline-logos__item last-col">
+                    <li class="inline-logos__item">
                         <img class="inline-logos__image" src="{{ site.asset_path }}06469a26-official-logo-color.svg" alt="suse" />
                     </li>
                     <li class="inline-logos__item">
@@ -36,10 +40,11 @@ layout: default
                     <li class="inline-logos__item">
                         <img class="inline-logos__image" src="{{ site.asset_path }}d9a1a359-yocto-project-transp.png" alt="yocto project" />
                     </li>
+                    <li class="inline-logos__item last-col">
+                        <img class="inline-logos__image" src="{{ site.asset_path }}ba58e5e3-Openwrt_Logo.svg" alt="OpenWrt" />
+                    </li>
                 </ul>
-                <div class="align-center clearfix">
-                    <p>Read the <a href="/docs/core/install">installation instructions</a> or <a href="http://www.github.com/snapcore/snapd">build <code>snapd</code> from source</a></p>
-                </div>
+
             </div>
         </div>
     </section>
