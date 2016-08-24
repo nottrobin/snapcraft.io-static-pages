@@ -1,5 +1,5 @@
 .inline-logos {
-  padding-top: 40px;
+  padding-top: 20px;
 
   .inline-logos__item {
     margin: 0;
@@ -7,7 +7,7 @@
 
     @media only screen and (min-width: $breakpoint-medium) {
       margin-right: 20px;
-      margin-bottom: 40px;
+      margin-bottom: 20px;
     }
   }
 }
@@ -23,4 +23,9 @@
   h3 {
     margin-top: .2em;
   }
+}
+
+/// xxx hack for vanilla issue
+.equal-height__align-vertically {
+  align-items: flex-start;
 }

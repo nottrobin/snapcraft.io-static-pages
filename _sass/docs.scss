@@ -21,7 +21,8 @@ $ubuntu_orange:    #dd4814;
 @import "command-line";
 
 .documentation__content pre {
-  @extend .code-block, .command-line;
+  @extend .code-block !optional;
+  @extend .command-line !optional;
 
   border: 1px solid #cdcdcd;
 
