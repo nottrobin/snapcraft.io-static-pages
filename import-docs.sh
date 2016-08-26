@@ -3,7 +3,7 @@
 set -e
 
 rm -rf docs
-git clone --depth=1 --branch=new-structure git@github.com:CanonicalLtd/snappy-docs.git docs
+git clone --depth=1 git@github.com:CanonicalLtd/snappy-docs.git docs
 (
   cd docs
   echo "Checked out docs at commit:"
