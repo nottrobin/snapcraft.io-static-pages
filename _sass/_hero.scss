@@ -10,19 +10,23 @@ $dark_aubergine: #2c001e;
   padding-top: 20px;
   padding-bottom: 0;
 
+  .intro {
+    font-size: .875rem;
+  }
+
   @media only screen and (min-width: $breakpoint-medium) {
     padding-top: 60px;
     padding-bottom: 20px;
+
+    .intro {
+      font-size: 23px;
+      line-height: 1.5;
+    }
   }
 
   @media only screen and (min-width: 984px) {
     &__heading {
       margin-top: 2rem;
     }
-  }
-
-  .intro {
-    font-size: 23px;
-    line-height: 1.5;
   }
 }
