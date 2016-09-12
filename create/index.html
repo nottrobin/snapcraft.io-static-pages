@@ -114,7 +114,7 @@ hello_2.10_amd64.snap  parts  snap  snapcraft.yaml  prime</code></pre>
 
             <p>Now, everything you need for the hello app is inside the snap file. You can install it locally:</p>
 
-            <pre class="command-line code-block"><code>$ sudo snap install hello_2.10_*.snap
+            <pre class="command-line code-block"><code>$ sudo snap install --force-dangerous hello_2.10_*.snap
 hello 2.10 installed
 
 
@@ -130,6 +130,8 @@ hello  2.10     X1</code></pre>
             <p>The version is purely human-readable, it isn't used for any particular purpose other than keeping you aware of what's on your system. Two different snaps can claim to have the same version (in fact, when you have daily builds of a snap, it will almost always have a version like "2.1b3" for every build until the version is updated).</p>
 
             <p>The revision for a snap is unique. In this example, because you built the snap locally, it gets a local alphanumeric revision that is unique on this machine only. When you load a snap from the store, the revision is an integer number that exactly identifies the snap that is installed. While you can't do this for local revisions, with snaps loaded from the store you can compare revisions on two machines to determine if they have exactly the same content installed.</p>
+
+            <p>When you install a snap from the store, it includes an "assertion" that the snap was published by a trusted third party. However, in this case you're installing a snap straight from your hard drive; that assertion hasn't been generated. We use the <code>--force-dangerous</code> option to tell snapd to trust it anyway.</p>
 
             <p>You can also confirm details of all the snaps you've installed:</p>
 
@@ -188,7 +190,7 @@ Usage:
 
             <p>The resulting snap is a single file called <code>name_version_arch.snap</code>.</p>
 
-            <p>You can install snaps directly with <code>snap install &lt;snapfile.snap&gt;</code>.</p>
+            <p>You can install snaps directly with <code>snap install --force-dangerous &lt;snapfile.snap&gt;</code>.</p>
 
             <p>Locally created snaps have their own local revisions that are specific to that system.</p>
 
@@ -296,7 +298,7 @@ parts:
 
             <pre class="command-line code-block"><code>$ snapcraft
 ...
-$ sudo snap install hello-debug_2.10_*.snap
+$ sudo snap install --force-dangerous hello-debug_2.10_*.snap
 ...</code></pre>
 
             <p>The result is that two apps are exposed:</p>
@@ -464,7 +466,7 @@ Snapped hello-debug_2.10_amd64.snap</code></pre>
 
             <pre class="command-line code-block"><code>$ cd ../../10-SNAPS/01-service
 $ snapcraft
-$ sudo snap install hello-world-service_0.1_*.snap --devmode
+$ sudo snap install --force-dangerous hello-world-service_0.1_*.snap --devmode
 Name                 Version  Rev  Developer  Notes
 hello-world-service  0.1      x1              devmode</code></pre>
 
@@ -490,7 +492,7 @@ hello-world-service  0.1      x1              devmode</code></pre>
 
             <p>You may have noticed the <code>--devmode</code> option was used in snap install. Reinstall the snap without it:</p>
 
-            <pre class="command-line code-block"><code>$ sudo snap install hello-world-service_0.1_*.snap
+            <pre class="command-line code-block"><code>$ sudo snap install --force-dangerous hello-world-service_0.1_*.snap
 Name                 Version  Rev  Developer  Notes
 hello-world-service  0.1      x2              -</code></pre>
 
@@ -524,7 +526,7 @@ confinement: devmode</code></pre>
 
             <pre class="command-line code-block"><code>$ cd ../02-service-confined
 $ snapcraft
-$ sudo snap install hello-world-service_0.1_*.snap
+$ sudo snap install --force-dangerous hello-world-service_0.1_*.snap
 Name                 Version  Rev  Developer  Notes
 hello-world-service  0.1      x3              -</code></pre>
 
@@ -644,7 +646,7 @@ version: 0.1</code></pre>
 
             <pre class="command-line code-block"><code>$ cd ../../20-PARTS-PLUGINS/01-reusable-part
 $ snapcraft
-$ sudo snap install hello-world-desktop_0.1_*.snap</code></pre>
+$ sudo snap install --force-dangerous hello-world-desktop_0.1_*.snap</code></pre>
 
             <p>Which can be run with the <code>hello-world-desktop</code> command as defined in the <code>snapcraft.yaml</code>:
 apps:</p>
@@ -760,6 +762,8 @@ $ sudo snap login you@yourdomain.com</code></pre>
             <pre class="command-line code-block"><code>$ snap install hello-mark
 Name        Version  Rev     Developer
 hello-mark  1.0      1       sabdfl</code></pre>
+
+            <p>Note that, now that the snap has been published in the store, we no longer need the <code>--force-dangerous</code> flag.</p>
 
             <h3 id="confinement-40">40 - CONFINEMENT</h3>
 
