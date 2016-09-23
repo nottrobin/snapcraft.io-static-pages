@@ -175,7 +175,7 @@ Usage:
   snapcraft [options] cleanbuild
   snapcraft [options] login
   snapcraft [options] logout
-  snapcraft [options] upload &lt;snap-file&gt;
+  snapcraft [options] push &lt;snap-file&gt;
   snapcraft [options] list-plugins
   snapcraft [options] tour [&lt;directory&gt;]
   snapcraft [options] help (topics | &lt;plugin&gt; | &lt;topic&gt;) [--devel]
@@ -732,7 +732,7 @@ $ sudo snap login you@yourdomain.com</code></pre>
 
             <p>Once you've registered your snap name, go back to your <code>snapcraft.yaml</code> file and update the name field. Run Snapcraft again to quickly rebuild with the new name. With that done, the new revision of your snap can be uploaded to the Store:</p>
 
-            <pre class="command-line code-block"><code>$ snapcraft upload hello-world_1.0_*.snap</code></pre>
+            <pre class="command-line code-block"><code>$ snapcraft push hello-world_1.0_*.snap</code></pre>
 
             <h4 id="publication">publication: users only see your published revisions</h4>
 
@@ -747,7 +747,7 @@ $ sudo snap login you@yourdomain.com</code></pre>
                 <li>Edge is for your most recent changes, probably untested and with no guarantees attached</li>
             </ul>
 
-            <p>Open the URL that was returned from <code>snapcraft upload</code> or open the snap from the developer portal front page: <a class="external" href="https://myapps.developer.ubuntu.com">https://myapps.developer.ubuntu.com</a></p>
+            <p>Open the URL that was returned from <code>snapcraft push</code> or open the snap from the developer portal front page: <a class="external" href="https://myapps.developer.ubuntu.com">https://myapps.developer.ubuntu.com</a></p>
 
             <p>You should see the 1.0 version in the lefthand column. Clicking on that link will bring up further details about this revision. Here you can edit the list of channels it should be released into.</p>
 
