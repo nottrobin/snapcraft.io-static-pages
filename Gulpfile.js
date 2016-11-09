@@ -11,13 +11,22 @@ var messages = {
     jekyllBuild: '<span style="color: grey">Running:</span> $ jekyll build'
 };
 
+
+/**
+ * Run a jekyll command
+ */
+function runJekyll(commands) {
+    bundleArguments = ['exec', 'jekyll'].concat(commands);
+
+    return cp.spawn('bundle', bundleArguments, {stdio: 'inherit'});
+}
+
 /**
  * Build the Jekyll Site
  */
 gulp.task('jekyll-build', function (done) {
     browserSync.notify(messages.jekyllBuild);
-    return cp.spawn('jekyll', ['build'], {stdio: 'inherit'})
-        .on('close', done);
+    return runJekyll(['build']).on('close', done);
 });
 
 /**
@@ -25,8 +34,7 @@ gulp.task('jekyll-build', function (done) {
  */
 gulp.task('jekyll-serve', function (done) {
     browserSync.notify(messages.jekyllBuild);
-    return cp.spawn('jekyll', ['serve'], {stdio: 'inherit'})
-        .on('close', done);
+    return runJekyll(['serve']).on('close', done);
 });
 
 /**

@@ -10,9 +10,10 @@ To run this project, you need `npm`, `jekyll` and `sass` installed. E.g. Ubuntu:
 sudo apt install nodejs-legacy npm ruby-sass jekyll
 ```
 
-Now, in the project folder, install nodejs dependencies:
+Now, in the project folder, install gem and nodejs dependencies:
 
 ``` bash
+bundle install
 npm i
 ```
 
@@ -49,3 +50,4 @@ Then re-run the site with `gulp`.
 Code licensed [LGPLv3](http://opensource.org/licenses/lgpl-3.0.html) by [Canonical Ltd.](http://www.canonical.com/).
 
 With ♥ from Canonical
+

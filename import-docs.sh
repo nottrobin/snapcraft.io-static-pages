@@ -12,3 +12,4 @@ git clone --depth=1 git@github.com:CanonicalLtd/snappy-docs.git docs
 )
 mv docs/navigation.html _includes/docs-navigation.html
 ./update-docs-layout.py
+
