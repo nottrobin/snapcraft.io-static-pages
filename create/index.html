@@ -25,13 +25,17 @@ layout: default
             <p>To take this tour of snaps and Snapcraft, you'll need to have Snapcraft 2.11 or later installed. If you've already installed Snapcraft you can check the version:</p>
 
             <pre class="command-line code-block"><code>$ snapcraft --version
-2.11</code></pre>
+2.22</code></pre>
 
             <p>If you haven't installed Snapcraft, it's available on Ubuntu 16.04 LTS:</p>
 
             <pre class="command-line code-block"><code>$ sudo apt install snapcraft</code></pre>
 
             <p>Note: to get the latest version of Snapcraft and future updates, make sure the <code>xenial-updates/universe</code> repository <a class="external" href="http://askubuntu.com/questions/148638/how-do-i-enable-the-universe-repository">is enabled</a> on your system. Snapcraft will also run on any Linux distribution with an up-to-date version of <a class="external" href="http://www.ubuntu.com/cloud/lxd">LXD, the container hypervisor</a>.</p>
+
+            <p>Some of these examples also require you to have the <code>build-essentials</code> package installed:</p>
+
+            <pre class="command-line code-block"><code>$ sudo apt install build-essentials</code></pre>
 
             <h2 id="tour">Take the snapcraft tour</h2>
 
@@ -103,10 +107,10 @@ Building gnu-hello
 ...
 Snapped hello_2.10_amd64.snap</code></pre>
 
-            <p>You'll have seen that Snapcraft fetched the source code, configured and built it. The snap is now available in your directory, along with new parts, prime, and snap directories.</p>
+            <p>You'll have seen that Snapcraft fetched the source code, configured and built it. The snap is now available in your directory, along with new parts, prime, and stage directories.</p>
 
             <pre class="command-line code-block"><code>$ ls
-hello_2.10_amd64.snap  parts  snap  snapcraft.yaml  prime</code></pre>
+hello_2.10_amd64.snap  parts  prime  snapcraft.yaml  stage  prime</code></pre>
 
             <p>As you can see a snap is a single file. The name of the file is based on information in the <code>snapcraft.yaml</code> (its name and version) and the architecture you're building on: <code>&lt;name&gt;_&lt;version&gt;_&lt;arch&gt;.snap</code>. </p>
 
@@ -114,14 +118,20 @@ hello_2.10_amd64.snap  parts  snap  snapcraft.yaml  prime</code></pre>
 
             <p>Now, everything you need for the hello app is inside the snap file. You can install it locally:</p>
 
-            <pre class="command-line code-block"><code>$ sudo snap install --force-dangerous hello_2.10_*.snap
+            <pre class="command-line code-block"><code>$ sudo snap install --dangerous hello_2.10_*.snap
 hello 2.10 installed
 
-
-64.64 MB / 64.64 MB [=============================] 100.00 % 3.97 MB/s
-
-Name   Version  Rev     Developer  Notes
-hello  2.10     X1</code></pre>
+$ snap info hello
+name:      hello
+summary:   "GNU Hello, the \"hello world\" snap"
+publisher:
+description: |
+  GNU hello prints a friendly greeting. This is part of the snapcraft tour at
+  http://snapcraft.io/create/
+tracking:
+installed: 2.10 (x1) 745kB -
+refreshed: 2016-12-14 17:06:35 +0100 CET
+</code></pre>
 
             <p>Congratulations, you've just made and installed your first snap.</p>
 
@@ -131,14 +141,14 @@ hello  2.10     X1</code></pre>
 
             <p>The revision for a snap is unique. In this example, because you built the snap locally, it gets a local alphanumeric revision that is unique on this machine only. When you load a snap from the store, the revision is an integer number that exactly identifies the snap that is installed. While you can't do this for local revisions, with snaps loaded from the store you can compare revisions on two machines to determine if they have exactly the same content installed.</p>
 
-            <p>When you install a snap from the store, it includes an "assertion" that the snap was published by a trusted third party. However, in this case you're installing a snap straight from your hard drive; that assertion hasn't been generated. We use the <code>--force-dangerous</code> option to tell snapd to trust it anyway.</p>
+            <p>When you install a snap from the store, it includes an "assertion" that the snap was published by a trusted third party. However, in this case you're installing a snap straight from your hard drive; that assertion hasn't been generated. We use the <code>--dangerous</code> option to tell snapd to trust it anyway.</p>
 
             <p>You can also confirm details of all the snaps you've installed:</p>
 
             <pre class="command-line code-block"><code>$ snap list
 Name         Version               Rev  Developer  Notes
 hello        2.10                  X1              -
-ubuntu-core  16.04+20160531.11-56  122  canonical  -</code></pre>
+ubuntu-core  16.04.1               423  canonical  -</code></pre>
 
             <p>Finally, run your snap:</p>
 
@@ -148,12 +158,11 @@ Hello, world!</code></pre>
             <p>Next, you might want to do some housekeeping and get rid of all the files that were created in the process of building the snap:</p>
 
             <pre class="command-line code-block"><code>$ snapcraft clean
-Cleaning snapping area for gnu-hello
+Cleaning priming area for gnu-hello
 Cleaning staging area for gnu-hello
 Cleaning build for gnu-hello
 Cleaning pulled source for gnu-hello
-Cleaning up parts directory
-Cleaning up priming area
+Cleaning up snapping area
 
 $ ls
 hello_2.10_amd64.snap  snapcraft.yaml</code></pre>
@@ -170,14 +179,32 @@ Usage:
   snapcraft [options] build [&lt;part&gt; ...] [--no-parallel-build]
   snapcraft [options] stage [&lt;part&gt; ...]
   snapcraft [options] prime [&lt;part&gt; ...]
+  snapcraft [options] strip [&lt;part&gt; ...]
   snapcraft [options] clean [&lt;part&gt; ...] [--step &lt;step&gt;]
   snapcraft [options] snap [&lt;directory&gt; --output &lt;snap-file&gt;]
   snapcraft [options] cleanbuild
   snapcraft [options] login
   snapcraft [options] logout
-  snapcraft [options] push &lt;snap-file&gt;
+  snapcraft [options] list-keys
+  snapcraft [options] keys
+  snapcraft [options] create-key [&lt;key-name&gt;]
+  snapcraft [options] register-key [&lt;key-name&gt;]
+  snapcraft [options] register &lt;snap-name&gt; [--private]
+  snapcraft [options] sign-build &lt;snap-file&gt; [--key-name=&lt;key-name&gt;] [--local]
+  snapcraft [options] upload &lt;snap-file&gt;
+  snapcraft [options] push &lt;snap-file&gt; [--release &lt;channels&gt;]
+  snapcraft [options] release &lt;snap-name&gt; &lt;revision&gt; &lt;channel&gt;
+  snapcraft [options] status &lt;snap-name&gt; [--series=&lt;series&gt;] [--arch=&lt;arch&gt;]
+  snapcraft [options] history &lt;snap-name&gt; [--series=&lt;series&gt;] [--arch=&lt;arch&gt;]
+  snapcraft [options] close &lt;snap-name&gt; &lt;channel_names&gt;...
   snapcraft [options] list-plugins
   snapcraft [options] tour [&lt;directory&gt;]
+  snapcraft [options] update
+  snapcraft [options] gated &lt;snap-name&gt;
+  snapcraft [options] validate &lt;snap-name&gt; &lt;validation&gt;... [--key-name=&lt;key-name&gt;]
+  snapcraft [options] define &lt;part-name&gt;
+  snapcraft [options] search [&lt;query&gt; ...]
+  snapcraft [options] enable-ci [&lt;ci-system&gt;] [--refresh]
   snapcraft [options] help (topics | &lt;plugin&gt; | &lt;topic&gt;) [--devel]
   snapcraft (-h | --help)
   snapcraft --version</code></pre>
@@ -190,7 +217,7 @@ Usage:
 
             <p>The resulting snap is a single file called <code>name_version_arch.snap</code>.</p>
 
-            <p>You can install snaps directly with <code>snap install --force-dangerous &lt;snapfile.snap&gt;</code>.</p>
+            <p>You can install snaps directly with <code>snap install --dangerous &lt;snapfile.snap&gt;</code>.</p>
 
             <p>Locally created snaps have their own local revisions that are specific to that system.</p>
 
@@ -229,31 +256,55 @@ Usage:
             <p>You can ask Snapcraft itself for a full specification of all the ways to refer to source:</p>
 
             <pre class="command-line code-block"><code>$ snapcraft help sources
-Common 'source' options.
+Common &apos;source&apos; options.
 
-Unless the part plugin overrides this behaviour, a part can use these 'source' keys in its definition. They tell snapcraft where to pull source code for that part, and how to unpack it if necessary.
+Unless the part plugin overrides this behaviour, a part can use these
+&apos;source&apos; keys in its definition. They tell snapcraft where to pull source
+code for that part, and how to unpack it if necessary.
 
- - source: url-or-path
+  - source: url-or-path
 
-    A URL or path to some source tree to build. It can be local ('./src/foo') or remote ('https://foo.org/...'), and can refer to a directory tree or a tarball or a revision control repository ('git:...').
+    A URL or path to some source tree to build. It can be local
+    (&apos;./src/foo&apos;) or remote (&apos;https://foo.org/...&apos;), and can refer to a
+    directory tree or a tarball or a revision control repository
+    (&apos;git:...&apos;).
 
-  - source-type: git, bzr, hg, tar or zip
+  - source-type: git, bzr, hg, svn, tar, deb, rpm, or zip
 
-    In some cases the source string is not enough to identify the version control system or compression algorithm. The source-type key can tell snapcraft exactly how to treat that content.
+    In some cases the source string is not enough to identify the version
+    control system or compression algorithm. The source-type key can tell
+    snapcraft exactly how to treat that content.
+
+  - source-depth: &lt;integer&gt;
+
+    By default clones or branches with full history, specifying a depth
+    will truncate the history to the specified number of commits.
 
   - source-branch: &lt;branch-name&gt;
 
-    Snapcraft will checkout a specific branch from the source tree. This only works on multi-branch repositories from git and hg (mercurial).
+    Snapcraft will checkout a specific branch from the source tree. This
+    only works on multi-branch repositories from git and hg (mercurial).
+
+  - source-commit: &lt;commit&gt;
+
+    Snapcraft will checkout the specific commit from the source tree revision
+    control system.
 
   - source-tag: &lt;tag&gt;
 
-    Snapcraft will checkout the specific tag from the source tree revision control system.
+    Snapcraft will checkout the specific tag from the source tree revision
+    control system.
 
   - source-subdir: path
 
-    Snapcraft will checkout the repository or unpack the archive referred to by the 'source' keyword into parts/&lt;part-name&gt;/src/ but it will only copy the specified subdirectory into parts/&lt;part-name&gt;/build/
+    Snapcraft will checkout the repository or unpack the archive referred to
+    by the &apos;source&apos; keyword into parts/&lt;part-name&gt;/src/ but it will only
+    copy the specified subdirectory into parts/&lt;part-name&gt;/build/
 
-Note that plugins might well define their own semantics for the 'source' keywords, because they handle specific build systems, and many languages have their own built-in packaging systems (think CPAN, PyPI, NPM). In those cases you want to refer to the help text for the specific plugin.
+Note that plugins might well define their own semantics for the &apos;source&apos;
+keywords, because they handle specific build systems, and many languages
+have their own built-in packaging systems (think CPAN, PyPI, NPM). In those
+cases you want to refer to the help text for the specific plugin.
 
   snapcraft help &lt;plugin&gt;</code></pre>
 
@@ -298,7 +349,7 @@ parts:
 
             <pre class="command-line code-block"><code>$ snapcraft
 ...
-$ sudo snap install --force-dangerous hello-debug_2.10_*.snap
+$ sudo snap install --dangerous hello-debug_2.10_*.snap
 ...</code></pre>
 
             <p>The result is that two apps are exposed:</p>
@@ -466,9 +517,18 @@ Snapped hello-debug_2.10_amd64.snap</code></pre>
 
             <pre class="command-line code-block"><code>$ cd ../../10-SNAPS/01-service
 $ snapcraft
-$ sudo snap install --force-dangerous hello-world-service_0.1_*.snap --devmode
-Name                 Version  Rev  Developer  Notes
-hello-world-service  0.1      x1              devmode</code></pre>
+$ sudo snap install --dangerous hello-world-service_0.1_*.snap --devmode
+hello-world-service 0.1 installed
+$ snap info hello-world-service
+name:      hello-world-service
+summary:   "A hello world style nodejs webserver app"
+publisher:
+description: |
+  This example demonstrates how to have nodejs webserver. This is part of the
+  snapcraft tour at http://snapcraft.io/create/
+tracking:
+installed: 0.1 (x1) 11MB devmode
+refreshed: 2016-12-15 09:20:04 +0100 CET</code></pre>
 
             <p><code>--devmode</code> will be explained in the next chapter, so for now open <a href="http://localhost:8000">http://localhost:8000</a> in your browser and you'll find the running web service.</p>
 
@@ -492,21 +552,21 @@ hello-world-service  0.1      x1              devmode</code></pre>
 
             <p>You may have noticed the <code>--devmode</code> option was used in snap install. Reinstall the snap without it:</p>
 
-            <pre class="command-line code-block"><code>$ sudo snap install --force-dangerous hello-world-service_0.1_*.snap
-Name                 Version  Rev  Developer  Notes
-hello-world-service  0.1      x2              -</code></pre>
+            <pre class="command-line code-block"><code>$ sudo snap install --dangerous hello-world-service_0.1_*.snap
+error: cannot perform the following tasks:
+- Mount snap "hello-world-service" (unset) (snap "hello-world-service" requires devmode or confinement override)</code></pre>
 
-            <p>If you now open <a href="http://localhost:8000">http://localhost:8000</a> you get a 404 page with no content and it would seem that the service can't serve web requests now.</p>
+            <p>The snap has failed to install because its <code>snapcraft.yaml</code> declares it needs to run in <code>devmode</code>:</p>
+
+            <pre class="command-line code-block"><code>$ more snapcraft.yaml
+[...]
+confinement: devmode</code></pre>
 
             <p>All snaps run confined by default. They're able to access any functions in the snap and data written to their own private writable area, but have restricted and secured access to the system.</p>
 
             <p>The hello world service needs to listen to the network (a restricted and secured part of the system), but hasn't been setup with the additional permissions to do so yet.</p>
 
-            <p>To simplify development, <code>--devmode</code> enables you to run the snap outside the confinement sandbox and get unrestricted access to system resources, in this case, listening to the network. However, you do need to tell the snap that it can run in devmode, by making a declaration in <code>snapcraft.yaml</code>:</p>
-
-            <pre class="command-line code-block"><code>$ more snapcraft.yaml
-[...]
-confinement: devmode</code></pre>
+            <p>To simplify development, <code>--devmode</code> enables you to run the snap outside the confinement sandbox and get unrestricted access to system resources, in this case, listening to the network. However, you do need to tell the snap that it requires devmode, by making a <code>devmode</code> declaration in <code>snapcraft.yaml</code>.</p>
 
             <p>This enables quick iteration to perfect the functionality of the snap before you need to worry about making it work under confinement. It should be noted that snaps uploaded to the store with confinement set to devmode are not visible with the snap find command. However, devmode snaps can still be installed if you specify the exact snap name.</p>
 
@@ -526,9 +586,8 @@ confinement: devmode</code></pre>
 
             <pre class="command-line code-block"><code>$ cd ../02-service-confined
 $ snapcraft
-$ sudo snap install --force-dangerous hello-world-service_0.1_*.snap
-Name                 Version  Rev  Developer  Notes
-hello-world-service  0.1      x3              -</code></pre>
+$ sudo snap install --dangerous hello-world-service_0.1_*.snap
+hello-world-service 0.1 installed</code></pre>
 
             <p>Open your browser at <a class="external" href="http://localhost:8000">http://localhost:8000</a>, the application looks identical to the previous example.</p>
 
@@ -572,7 +631,7 @@ doc  man  systemtap</code></pre>
 
             <p>The <code>snap.yaml</code> file provides the configuration file for the snap's content and is similar to the <code>snapcraft.yaml</code> file, with two exceptions:</p>
 
-            <pre class="command-line code-block"><code>$ more snap/meta/snap.yaml
+            <pre class="command-line code-block"><code>$ more prime/meta/snap.yaml
 apps:
   hello-service:
     command: command-hello-service.wrapper
@@ -584,6 +643,7 @@ apps:
 confinement: strict
 description: This example demonstrates how to have nodejs webserver. This is part
   of the snapcraft tour at http://snapcraft.io/create/
+grade: stable
 name: hello-world-service
 summary: A hello world style nodejs webserver app
 version: 0.1</code></pre>
@@ -646,7 +706,7 @@ version: 0.1</code></pre>
 
             <pre class="command-line code-block"><code>$ cd ../../20-PARTS-PLUGINS/01-reusable-part
 $ snapcraft
-$ sudo snap install --force-dangerous hello-world-desktop_0.1_*.snap</code></pre>
+$ sudo snap install --dangerous hello-world-desktop_0.1_*.snap</code></pre>
 
             <p>Which can be run with the <code>hello-world-desktop</code> command as defined in the <code>snapcraft.yaml</code>:
 apps:</p>
@@ -732,7 +792,7 @@ $ sudo snap login you@yourdomain.com</code></pre>
 
             <p>Once you've registered your snap name, go back to your <code>snapcraft.yaml</code> file and update the name field. Run Snapcraft again to quickly rebuild with the new name. With that done, the new revision of your snap can be uploaded to the Store:</p>
 
-            <pre class="command-line code-block"><code>$ snapcraft push hello-world_1.0_*.snap</code></pre>
+            <pre class="command-line code-block"><code>$ snapcraft upload hello-world_1.0_*.snap</code></pre>
 
             <h4 id="publication">publication: users only see your published revisions</h4>
 
@@ -763,7 +823,7 @@ $ sudo snap login you@yourdomain.com</code></pre>
 Name        Version  Rev     Developer
 hello-mark  1.0      1       sabdfl</code></pre>
 
-            <p>Note that, now that the snap has been published in the store, we no longer need the <code>--force-dangerous</code> flag.</p>
+            <p>Note that, now that the snap has been published in the store, we no longer need the <code>--dangerous</code> flag.</p>
 
             <h3 id="confinement-40">40 - CONFINEMENT</h3>
 
