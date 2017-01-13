@@ -33,9 +33,9 @@ layout: default
 
             <p>Note: to get the latest version of Snapcraft and future updates, make sure the <code>xenial-updates/universe</code> repository <a class="external" href="http://askubuntu.com/questions/148638/how-do-i-enable-the-universe-repository">is enabled</a> on your system. Snapcraft will also run on any Linux distribution with an up-to-date version of <a class="external" href="http://www.ubuntu.com/cloud/lxd">LXD, the container hypervisor</a>.</p>
 
-            <p>Some of these examples also require you to have the <code>build-essentials</code> package installed:</p>
+            <p>Some of these examples also require you to have the <code>build-essential</code> package installed:</p>
 
-            <pre class="command-line code-block"><code>$ sudo apt install build-essentials</code></pre>
+            <pre class="command-line code-block"><code>$ sudo apt install build-essential</code></pre>
 
             <h2 id="tour">Take the snapcraft tour</h2>
 
@@ -96,7 +96,7 @@ parts:
 
             <p>Don't worry about everything in there just yet. The snapcraft tool will interpret this file, fetch and install everything that is needed, build it, and give you a snap.</p>
 
-            <p>Start by building this snap, noting that you’ll be prompted for your system password each time you run <code>snapcraft</code>:</p>
+            <p>Start by building this snap, noting that you’ll be prompted for your system password if <code>snapcraft</code> needs to download dependencies from the archive:</p>
 
             <pre class="command-line code-block"><code>$ snapcraft
 [sudo] password for [your user name]:  ***
@@ -110,7 +110,7 @@ Snapped hello_2.10_amd64.snap</code></pre>
             <p>You'll have seen that Snapcraft fetched the source code, configured and built it. The snap is now available in your directory, along with new parts, prime, and stage directories.</p>
 
             <pre class="command-line code-block"><code>$ ls
-hello_2.10_amd64.snap  parts  prime  snapcraft.yaml  stage  prime</code></pre>
+hello_2.10_amd64.snap  parts  prime  snapcraft.yaml  stage</code></pre>
 
             <p>As you can see a snap is a single file. The name of the file is based on information in the <code>snapcraft.yaml</code> (its name and version) and the architecture you're building on: <code>&lt;name&gt;_&lt;version&gt;_&lt;arch&gt;.snap</code>. </p>
 
