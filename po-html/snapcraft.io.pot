@@ -1288,7 +1288,7 @@ msgid "Open your browser at"
 msgstr ""
 
 #: ../create/index.html
-msgid "$ snapcraft upload hello-world_1.0_*.snap"
+msgid "$ snapcraft push hello-world_1.0_*.snap"
 msgstr ""
 
 #: ../create/index.html
