@@ -1203,7 +1203,7 @@ msgstr ""
 #: ../create/index.html
 msgid ""
 "https://github.com/ubuntu-"
-"core/snapcraft/blob/master/demos/godd/snapcraft.yaml"
+"core/snapcraft/blob/master/demos/godd/snap/snapcraft.yaml"
 msgstr ""
 
 #: ../create/index.html
@@ -1822,7 +1822,7 @@ msgstr ""
 #: ../create/index.html
 msgid ""
 "See https://github.com/ubuntu-"
-"core/snapcraft/blob/master/demos/libpipeline/snapcraft.yaml"
+"core/snapcraft/blob/master/demos/libpipeline/snap/snapcraft.yaml"
 msgstr ""
 
 #: ../create/index.html
