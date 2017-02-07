@@ -49,5 +49,7 @@ Then re-run the site with `gulp`.
 
 Code licensed [LGPLv3](http://opensource.org/licenses/lgpl-3.0.html) by [Canonical Ltd.](http://www.canonical.com/).
 
+[caldav](https://github.com/caldav) is the champion for this project.
+
 With ♥ from Canonical
 
