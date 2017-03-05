@@ -25,7 +25,7 @@ To fire up the project, run;
 node_modules/gulp/bin/gulp.js
 ```
 
-This should open `http://localhost:3000/` in your browser.
+This should open http://localhost:4000/ in your browser.
 
 ## Deploy to Github Pages
 
