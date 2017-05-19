@@ -1,5 +1,9 @@
 @charset "utf-8";
 
+// import global settings
+@import 'global-settings.scss';
+
+
 // Import the vanilla framework - https://github.com/ubuntudesign/vanilla-framework
 @import "../node_modules/vanilla-framework/scss/vanilla";
 
@@ -17,3 +21,12 @@
   'hero',
   'social-link',
   'responsive-tabs';
+
+// Patterns
+@import
+'patterns_buttons',
+'patterns_links';
+
+// Patterns
+@include snapcraft-p-buttons;
+@include snapcraft-p-links;
