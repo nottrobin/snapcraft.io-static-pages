@@ -26,7 +26,8 @@ exclude: [
   'translate-html',
   'import-docs.sh',
   'update-docs-layout.py',
-  'po-html'
+  'po-html',
+  'vendor/bundle'
 ]
 permalink: /:title
 
