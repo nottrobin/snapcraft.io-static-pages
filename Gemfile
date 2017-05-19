@@ -2,4 +2,4 @@ source "http://rubygems.org"
 
 gem "jekyll", ">= 3.2.1"
 gem 'rb-fsevent', '0.9.4' # Legacy version to support OSX
-
+gem 'jekyll-redirect-from'
