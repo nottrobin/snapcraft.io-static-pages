@@ -37,3 +37,6 @@ kramdown:
 
 # only build incrementally
 incremental: true
+
+gems:
+  - jekyll-redirect-from
