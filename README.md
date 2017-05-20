@@ -2,48 +2,25 @@
 
 The codebase for http://snapcraft.io.
 
-## Getting Started
+## Local development
 
-To run this project, you need `npm`, `jekyll` and `sass` installed. E.g. Ubuntu:
-
-``` bash
-sudo apt install nodejs-legacy npm ruby-sass jekyll
-```
-
-Now, in the project folder, install gem and nodejs dependencies:
+The simplest way to run the site locally is to first [install Docker](https://docs.docker.com/engine/installation/) (on Linux you may need to [add your user to the `docker` group](https://docs.docker.com/engine/installation/linux/linux-postinstall/)), and then use the `./run` script:
 
 ``` bash
-bundle install
-npm i
+./run
 ```
 
-### Run the site
+Once the containers are setup, you can visit <http://127.0.0.1:8004> in your browser.
 
-To fire up the project, run;
+### Building CSS
+
+For working on [Sass files](_sass), you may want to dynamically watch for changes to rebuild the CSS whenever something changes.
+
+To setup the watcher, open a new terminal window and run:
 
 ``` bash
-node_modules/gulp/bin/gulp.js
+./run watch
 ```
-
-This should open http://localhost:4000/ in your browser.
-
-## Deploy to Github Pages
-
-To deploy to Github Pages under your local Github username, please run;
-
-`gulp deploy`
-
-You should then be able to view the site at: `http://YOUR-GITHUB-USERNAME.github.io/snapcraft.io`
-
-## Importing documentation
-
-To import the documentation, make sure you have python 3.5 (`python3 --version`) with [python-frontmatter](https://pypi.python.org/pypi/python-frontmatter/0.2.1) installed, and run:
-
-``` bash
-./import-docs.sh
-```
-
-Then re-run the site with `gulp`.
 
 ## Licence
 
@@ -52,4 +29,3 @@ Code licensed [LGPLv3](http://opensource.org/licenses/lgpl-3.0.html) by [Canonic
 [caldav](https://github.com/caldav) is the champion for this project.
 
 With ♥ from Canonical
-
