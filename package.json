@@ -32,7 +32,7 @@
     "node-sass": "^4.5.3"
   },
   "scripts": {
-    "clean": "rm -rf node_modules yarn-error.log static/css",
+    "clean": "rm -rf node_modules yarn-error.log css _site .bundle .jekyll-metadata",
     "watch": "node-sass --include-path node_modules --source-map true --watch _sass --output css",
     "build": "node-sass --include-path node_modules _sass --output css",
     "test": "sass-lint _sass/**/*.scss --verbose --no-exit"
