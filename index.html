@@ -535,23 +535,3 @@ Hello (beta) 1.2 installed</code></pre>
     </section>
 
     {% include contextual-footer.html %}
-
-<!-- jQuery with fallback to the 1.* for old IE -->
-<!--[if lt IE 9]>
-    <script src="{{ site.asset_path }}b66ed708-jquery-1.11.0.min.js"></script>
-<![endif]-->
-<!--[if gte IE 9]><!-->
-    <script src="{{ site.asset_path }}98884258-jquery-2.1.0.min.js"></script>
-<!--<![endif]-->
-
-<script src="js/jquery.responsiveTabs.min.js" type="text/javascript"></script>
-
-<script>
-    $(document).ready(function () {
-        $('#responsive-tabs').responsiveTabs({
-            setHash: false,
-            scrollToAccordion: true,
-            active: 0
-        });
-    });
-</script>
