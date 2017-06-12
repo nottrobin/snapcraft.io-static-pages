@@ -153,13 +153,7 @@ bundler_run () {
     # Kill existing containers
     kill_container "${container_name}"
 
-    docker run \
-        --name ${container_name}             `# Name the container` \
-        --rm                                 `# Remove the container once it's finished`  \
-        ${env_file}                          `# Pass environment variables into the container, if file exists`  \
-        --tty --interactive                  `# Attach an interactive terminal`  \
-        --user $(id -u):$(id -g)             `# Run everything as the current user`  \
-        --volume `pwd`:`pwd` --workdir `pwd` `# Run in the current working directory`  \
+    run_as_user ${container_name} \
         --volume ${project}-bundle:/bundler  `# Persist ruby dependencies in a docker volume`  \
         ${extra_options}                     `# Extra options`  \
         ${bundler_image} ${command}          `# Run the jeklyll command`
