@@ -5,14 +5,15 @@
 
   &__item--twitter,
   &__item--google-plus,
-  &__item--facebook {
+  &__item--facebook,
+  &__item--youtube {
     margin-right: 20px;
     float: left;
     text-indent: -99999px;
-    background-image: url('#{$asset-server}ed986fc0-icon-social.svg');
+    background-image: url('#{$asset-server}ea75daef-build.snapcraft.social.svg');
     background-repeat: no-repeat;
-    height: 44px;
-    width: 44px;
+    height: 45px;
+    width: 45px;
     overflow: hidden;
     display: inline-block;
 
@@ -31,5 +32,9 @@
 
   &__item--facebook {
     background-position: -90px 0;
+  }
+
+  &__item--youtube {
+    background-position: -135px 0;
   }
 }
