@@ -1,16 +1,19 @@
+$gutter: 20px;
+$button-width: 10px;
+$color-focus: #9d9c9a;
+
 .documentation {
+  // sass-lint:disable nesting-depth
   background-color: $white;
-  padding: 0;
   display: flex;
+  padding: 0;
+  flex: 1;
 
   @media only screen and (max-width: $breakpoint-medium) {
     flex-direction: column;
   }
 
   &__nav {
-    $gutter: 20px;
-    $button-width: 10px;
-
     // To enabling hiding of the bottom-most border in the navigation
     overflow: hidden;
 
@@ -25,35 +28,31 @@
       margin: 0;
       padding-left: 0;
       padding-right: 0;
-
-      -moz-user-select: none;
-      -khtml-user-select: none;
-      -webkit-user-select: none;
-      -ms-user-select: none;
       user-select: none;
 
       li {
         padding-left: $gutter;
         padding-right: $gutter;
         padding-top: 7px;
-
         margin: 0;
         position: relative;
 
         a {
           display: block;
-          color: #333333;
+          color: $cool-grey;
 
-          &:hover, &:focus {
+          &:hover,
+          &:focus {
             text-decoration: none;
           }
 
-          &:hover, &.active {
-            color: #e95420;
+          &:hover,
+          &.active {
+            color: $ubuntu-orange;
           }
         }
 
-        &:after {
+        &::after {
           width: $button-width;
           height: 1.875em;
           display: block;
@@ -70,16 +69,18 @@
             display: none;
           }
 
-          &:after {
+          &::after {
             content: '+';
           }
         }
 
         &.expanded {
+
           & > ul {
             display: block;
           }
-          &:after {
+
+          &::after {
             content: '-';
           }
         }
@@ -110,17 +111,25 @@
           }
         }
 
-        &:after {
+        &::after {
           background-position: center center;
           background-repeat: no-repeat;
         }
-        &.collapsed:after {
-          content: '';
-          background-image: url('https://assets.ubuntu.com/v1/04d2075a-chevron_down.svg');
+
+        &.collapsed {
+
+          &::after {
+            content: '';
+            background-image: url('#{$asset-server}04d2075a-chevron_down.svg');
+          }
         }
-        &.expanded:after {
-          content: '';
-          background-image: url('https://assets.ubuntu.com/v1/f3f43376-chevron_up.svg');
+
+        &.expanded {
+
+          &::after {
+            content: '';
+            background-image: url('#{$asset-server}f3f43376-chevron_up.svg');
+          }
         }
       }
     }
@@ -128,8 +137,10 @@
     // Top level sections get bottom padding.
     .section {
       padding: 0 0 20px;
+
       // Subsections & collapsed sections get no padding.
-      &.collapsed, .section {
+      &.collapsed,
+      .section {
         padding: 0;
       }
     }
@@ -152,7 +163,7 @@
         color: $cool-grey;
 
         &:focus {
-          border: 1px solid #9D9C9A;
+          border: 1px solid $color-focus;
           outline: none;
         }
 
@@ -161,16 +172,19 @@
           font-size: 1em;
           opacity: 1;
         }
+
         &:-moz-placeholder {
           color: $cool-grey;
           opacity: 1;
           font-size: 1em;
         }
+
         &::-moz-placeholder {
           color: $cool-grey;
           opacity: 1;
           font-size: 1em;
         }
+
         &:-ms-input-placeholder {
           color: $cool-grey;
           font-size: 1em;
@@ -258,25 +272,28 @@
     }
 
     iframe {
-      margin: 0.25em 0 1em 0;
+      margin: .25em 0 1em 0;
       width: 100%;
     }
 
-    dl+h2 {
-      margin-top: .563em;
-    }
+    dl {
 
-    dl+p {
-      margin-top: .75em;
+      + h2 {
+        margin-top: .563em;
+      }
+
+      + p {
+        margin-top: .75em;
+      }
     }
 
     dt {
-      margin: 1em 0 0.5em;
+      margin: 1em 0 .5em;
     }
 
     pre {
       background-color: $cool-grey;
-      border: none;
+      border: 0;
       color: $mid-grey;
 
       code {
@@ -285,6 +302,7 @@
       }
     }
   }
+  // sass-lint:enable nesting-depth
 }
 
 // Make main section fill the vertical space (sticky footer)
@@ -298,8 +316,4 @@
   flex: 1;
   display: flex;
   margin: 0;
-}
-
-.documentation {
-  flex: 1;
 }
