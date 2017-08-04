@@ -15,7 +15,7 @@
   margin: 0;
   margin-left: -20px;
   padding: 0;
-  
+
   a {
     outline: none;
   }
@@ -63,33 +63,35 @@
   position: relative;
   background: #fff;
   z-index: 1;
-}
-.responsive-tabs__nav-item.r-tabs-state-active:after, 
-.responsive-tabs__nav-item.r-tabs-state-active:before {
-  top: 100%;
-  left: 50%;
-  border: solid transparent;
-  content: " ";
-  height: 0;
-  width: 0;
-  position: absolute;
-  pointer-events: none;
+
+  &::before,
+  &::after {
+    top: 100%;
+    left: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+  }
+
+  &::after {
+    border-color: rgba(255, 255, 255, 0);
+    border-top-color: #fff;
+    border-width: 10px;
+    margin-left: -10px;
+  }
+
+  &::before {
+    border-color: rgba(225, 225, 225, 0);
+    border-top-color: #d5d5d5;
+    border-width: 11px;
+    margin-left: -11px;
+  }
 }
 
-.responsive-tabs__nav-item.r-tabs-state-active:after {
-  border-color: rgba(255, 255, 255, 0);
-  border-top-color: #fff;
-  border-width: 10px;
-  margin-left: -10px;
-}
-.responsive-tabs__nav-item.r-tabs-state-active:before {
-  border-color: rgba(225, 225, 225, 0);
-  border-top-color: #d5d5d5;
-  border-width: 11px;
-  margin-left: -11px;
-}
-
-/* Accordion responsive breakpoint */
+// Accordion responsive breakpoint
 @media only screen and (max-width: 767px) {
   .r-tabs .r-tabs-nav {
     display: none;

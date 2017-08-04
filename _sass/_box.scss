@@ -24,34 +24,11 @@
   }
 
   &__txt {
-    text-align: center;
-    display: block;
-    width: 100%;
     align-self: flex-end;
-  }
-
-  &__img-wrap {
-    min-height: 100px;
+    display: block;
+    margin: 1rem 0 0;
+    text-align: center;
     width: 100%;
-    display: flex;
-  }
-
-  @media only screen and (min-width: $site-max-width) {
-    padding: 1rem;
-
-    .partner-list & {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .support & {
-      padding: 2rem;
-    }
-  }
-
-  .external {
-    display: inline-block;
   }
 
   &__img {
@@ -67,8 +44,27 @@
     display: inline-block;
   }
 
-  &__txt {
-    margin: 1rem 0 0;
-    text-align: center;
+  &__img-wrap {
+    min-height: 100px;
+    width: 100%;
+    display: flex;
+  }
+
+  .external {
+    display: inline-block;
+  }
+
+  @media only screen and (min-width: $site-max-width) {
+    padding: 1rem;
+
+    .partner-list & {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .support & {
+      padding: 2rem;
+    }
   }
 }
