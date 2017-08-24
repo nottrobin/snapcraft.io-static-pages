@@ -8,6 +8,15 @@
     @media only screen and (min-width: $breakpoint-medium) {
       margin-right: 20px;
       margin-bottom: 20px;
+      width: 180px;
+      padding: 20px;
+    }
+
+    @media only screen and (max-width: $breakpoint-medium) {
+      margin-right: 20px;
+      margin-bottom: 20px;
+      width: 140px;
+      padding: 10px;
     }
   }
 }
@@ -15,7 +24,15 @@
 @media only screen and (min-width: $breakpoint-medium) {
   .inline-logos .inline-logos__image {
     max-height: 90px;
-    max-width: 160px;
+    max-width: 130px;
+    margin: auto;
+  }
+}
+
+@media only screen and (max-width: $breakpoint-medium) {
+  .inline-logos .inline-logos__image {
+    max-width: 110px;
+    margin: auto;
   }
 }
 
