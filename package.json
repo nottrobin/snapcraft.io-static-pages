@@ -1,30 +1,10 @@
 {
-  "name": "snapcraft.io",
-  "version": "1.0.0",
-  "description": "Codebase for http://snapcraft.io",
-  "main": "_site/index.html",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/ubuntudesign/snapcraft.io.git"
-  },
-  "keywords": [
-    "snap",
-    "snapcraft"
-  ],
-  "author": "Canonical Webteam <webteam@canonical.com>",
-  "license": "GPL-3.0",
-  "bugs": {
-    "url": "https://github.com/ubuntudesign/snapcraft.io/issues"
-  },
-  "homepage": "https://github.com/ubuntudesign/snapcraft.io#readme",
   "dependencies": {
     "browser-sync": "^2.11.1",
     "gulp": "^3.9.0",
     "gulp-autoprefixer": "^3.1.0",
     "gulp-sass": "^2.1.1",
-    "vanilla-framework": "0.1.0"
-  },
-  "devDependencies": {
+    "vanilla-framework": "0.1.0",
     "gulp-gh-pages": "^0.5.4",
     "gulp-uglify": "^1.5.3",
     "gulp-sourcemaps": "1.8.1",
