@@ -53,6 +53,7 @@
                     </div>
                     {% assign current = page.url | downcase | split: '/' %}
                     <ul>
+                        <li><a href="https://build.snapcraft.io">Build</a></li>
                         <li {% if current[1] == 'docs' %}class='active'{% endif %}><a href="/docs">Docs</a></li>
                         <li><a class="external" href="https://tutorials.ubuntu.com">Tutorials</a></li>
                         <li><a class="external" href="https://forum.snapcraft.io/">Forum</a></li>
