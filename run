@@ -325,6 +325,27 @@ python_run () {
         ${python_image} $@                                     `# Run command in the Python image`
 }
 
+build_docs () {
+    up_to_date=false
+
+    if [ -d docs/.git ]; then
+        remote_commit=$(git ls-remote https://github.com/CanonicalLtd/snappy-docs.git | grep HEAD | awk '{print $1;}')
+        local_commit=$(git -C docs/.git rev-parse HEAD)
+        if [ $remote_commit == $local_commit ]; then
+            up_to_date=true
+        fi
+    fi
+
+    if $up_to_date; then
+        echo "Local docs up-to-date"
+    else
+        rm -rf docs
+        git clone --depth=1 https://github.com/CanonicalLtd/snappy-docs.git docs
+        mv docs/navigation.html _includes/docs-navigation.html
+        python_run "${project}-build-docs" "" python3 update-docs-layout.py
+    fi
+}
+
 # Find current run command
 run_command=${1:-}
 if [[ -n "${run_command}" ]]; then shift; fi
@@ -356,6 +377,9 @@ case $run_command in
             node_install
             node_run "${project}-build" "" yarn run build
         fi
+
+        # Pull in docs
+        build_docs
 
         # Run watch command in the background
         if ${run_watcher}; then
@@ -417,6 +441,7 @@ case $run_command in
     "build")
         node_install
         node_run "${project}-build" "" yarn run build
+        build_docs
         if [ -f _config.yml ]; then
             # For jekyll sites
             ruby_run "${project}-build-site" "" jekyll build
@@ -484,6 +509,9 @@ case $run_command in
     "clean")
         echo "Remove hash files"
         rm -rf .requirements.${project}.hash .gemfile.${project}.hash
+
+        echo "Remove docs"
+        rm -rf docs
 
         echo "Running 'clean' yarn script"
         node_run "${project}-clean" "" yarn run clean || true  # Run the clean script
@@ -579,4 +607,3 @@ case $run_command in
     ;;
     *) invalid "Command '${run_command}' not recognised." ;;
 esac
-
